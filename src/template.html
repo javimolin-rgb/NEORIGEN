@@ -170,15 +170,27 @@
   .drawer__top{ display:flex; align-items:center; justify-content:space-between; padding:18px clamp(20px,5vw,40px); border-bottom:1px solid var(--line-onnavy); }
   .drawer__close{ width:42px; height:42px; border-radius:var(--radius); border:1px solid var(--line-onnavy); background:transparent; display:flex; align-items:center; justify-content:center; color:var(--mist); }
   .drawer__close svg{ width:16px; height:16px; }
+  /* Fixed line-height everywhere in the drawer so row height comes only from
+     padding, not from each font's own ascender/descender metrics -- that's
+     what made the gap above/below a line look slightly different item to
+     item even though the padding values were identical. */
   .drawer__list{ list-style:none; margin:0; padding:24px clamp(20px,5vw,40px) 40px; display:flex; flex-direction:column; }
-  .drawer__list a{ font-family:var(--font-display); font-size:1.7rem; color:var(--white); padding:14px 0; border-bottom:1px solid var(--line-onnavy); }
+  /* display:block is what makes the row heights below actually real: a bare
+     <a> is inline by default, so its top/bottom padding never pushes layout
+     -- it just paints past the line box and overlaps the next row. That was
+     the real cause of the uneven-looking gaps and lines, not the padding
+     numbers themselves. */
+  .drawer__list a{ display:block; font-family:var(--font-display); font-size:1.7rem; line-height:1.2; color:var(--white); padding:16px 0; border-bottom:1px solid var(--line-onnavy); }
   /* "Neorigen" (drawer__group header) hands its divider line down to the
      sub-list container instead of drawing its own, so the group reads as
      one row with a single closing line -- like every other item -- rather
-     than a line mid-group followed by two undivided sub-links. */
-  .drawer__group > a{ border-bottom:none; padding-bottom:4px; }
-  .drawer__sub{ padding:2px 0 14px 18px; display:flex; flex-direction:column; border-bottom:1px solid var(--line-onnavy); }
-  .drawer__sub a{ font-family:var(--font-mono); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--navy-100); padding:9px 0; border-bottom:0; transition:color .15s ease; }
+     than a line mid-group followed by two undivided sub-links. The gap into
+     and within the sub-list is deliberately tighter than the 32px rhythm
+     between main items (so the group still reads as one visual unit), but
+     kept proportional to it (~half) instead of an abrupt near-zero gap. */
+  .drawer__group > a{ border-bottom:none; padding-bottom:10px; }
+  .drawer__sub{ padding:6px 0 16px 18px; display:flex; flex-direction:column; border-bottom:1px solid var(--line-onnavy); }
+  .drawer__sub a{ display:block; font-family:var(--font-mono); font-size:0.92rem; line-height:1.2; text-transform:uppercase; letter-spacing:0.06em; color:var(--navy-100); padding:10px 0; border-bottom:0; transition:color .15s ease; }
   .drawer__sub a:hover{ color:var(--white); }
 
   /* ---------- sections ---------- */
@@ -585,7 +597,7 @@
     <div class="hero__grid-bg" aria-hidden="true"></div>
     <div class="wrap hero__grid">
       <div>
-        <div class="eyebrow on-dark hero__kicker">Casas prefabricadas sustentables · Chile</div>
+        <div class="eyebrow on-dark hero__kicker">Casas prediseñadas sustentables · Chile</div>
         <h1>Vive lo natural,<br>desde los <em>cimientos</em>.</h1>
         <p class="hero__lede">Casas llave en mano, diseñadas para adaptarse a tu forma de vivir y construidas con más de 20 años de trayectoria inmobiliaria detrás de cada proyecto.</p>
         <div class="hero__cta">
@@ -1980,7 +1992,7 @@
           </li>
         </ul>
         <hr class="hairline">
-        <p style="margin-top:20px; font-size:0.86rem; color:var(--ink-soft);">Casas prefabricadas, sustentables y llave en mano. Más de 20 años de trayectoria inmobiliaria.</p>
+        <p style="margin-top:20px; font-size:0.86rem; color:var(--ink-soft);">Casas prediseñadas, sustentables y llave en mano. Más de 20 años de trayectoria inmobiliaria.</p>
       </div>
 
       <div>
@@ -2334,7 +2346,7 @@
     <div class="footer__top">
       <div class="footer__brand">
         <img src="{{LOGO_WORDMARK_WHITE}}" alt="Neorigen">
-        <p>Casas prefabricadas, sustentables y personalizadas. Más de 20 años de trayectoria inmobiliaria.</p>
+        <p>Casas prediseñadas, sustentables y personalizadas. Más de 20 años de trayectoria inmobiliaria.</p>
         <div class="footer__social">
           <a href="https://wa.me/56942355665" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 11.5a8 8 0 1 1-3.8-6.8"/><path d="M20 4l-5.2 7.5-2.3-2"/></svg></a>
           <a href="https://instagram.com/neorigen_chile" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/></svg></a>

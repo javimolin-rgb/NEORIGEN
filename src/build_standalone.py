@@ -30,7 +30,7 @@ doc = f'''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Neorigen — casas prefabricadas sustentables. Modelos, terminaciones y proceso de construcción llave en mano.">
+<meta name="description" content="Neorigen — casas prediseñadas sustentables. Modelos, terminaciones y proceso de construcción llave en mano.">
 <link rel="icon" type="image/png" href="{favicon_uri}">
 <link rel="apple-touch-icon" href="{apple_touch_uri}">
 {head_extra}

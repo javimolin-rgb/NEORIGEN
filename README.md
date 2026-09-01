@@ -1,6 +1,6 @@
 # Sitio web Neorigen (2026)
 
-Rediseño del sitio web de Neorigen — casas prefabricadas sustentables — entregado como un artefacto HTML autocontenido con enrutamiento por hash (sin dependencias externas ni build step para verlo).
+Rediseño del sitio web de Neorigen — casas prediseñadas sustentables — entregado como un artefacto HTML autocontenido con enrutamiento por hash (sin dependencias externas ni build step para verlo).
 
 ## Estructura
 
