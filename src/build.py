@@ -20,6 +20,7 @@ replacements = {
     '{{LOGO_ICON_NAVY}}': png_uri(logo_b64.logo_icon_navy),
 
     '{{IMG_CASA_LINGUE}}': img_b64.casa_lingue,
+    '{{IMG_HERO_BG}}': img_b64.hero_bg_roble,
     '{{IMG_CASA_HUINGAN}}': img_b64.casa_huingan,
     '{{IMG_CASA_PEUMO}}': img_b64.casa_peumo,
     '{{IMG_CASA_BOLDO}}': img_b64.casa_boldo,
