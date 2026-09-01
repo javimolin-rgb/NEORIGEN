@@ -221,12 +221,22 @@
     background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 60% at 60% 20%, black, transparent 75%);
   }
   @media (max-width:900px){
+    /* On mobile/tablet the floating circular photo + rings + tag were
+       calibrated for a narrow desktop grid column; stacked full-width they
+       overflowed (the tag's left:-4% bled well past the viewport edge,
+       clipping "Casa Lingüe" to "a Lingüe"). Simpler and cleaner at this
+       size: drop the floating art entirely and use the same photo as a
+       soft background behind the hero text instead. */
     .hero__grid{ grid-template-columns:1fr; }
-    .hero__art{ order:-1; padding-top:36px; }
-    .hero__photo{ width:260px; }
-    .hero__seal{ width:56px; height:56px; }
-    .hero__seal svg{ width:24px; height:24px; }
-    .hero__photo-tag{ font-size:0.6rem; padding:7px 11px; }
+    .hero__art{ display:none; }
+    .hero__grid-bg{ display:none; }
+    .hero{
+      background-image:
+        linear-gradient(180deg, rgba(4,18,28,0.32) 0%, rgba(4,18,28,0.88) 58%, var(--navy-ink) 84%),
+        var(--hero-bg);
+      background-size: cover;
+      background-position: center 35%;
+    }
   }
 
   /* ---------- modelo destacado ---------- */
@@ -557,7 +567,7 @@
 <main data-page="/" class="is-active">
 
   <!-- ---------- HERO ---------- -->
-  <section class="hero">
+  <section class="hero" style="--hero-bg:url('{{IMG_CASA_LINGUE}}')">
     <div class="hero__grid-bg" aria-hidden="true"></div>
     <div class="wrap hero__grid">
       <div>

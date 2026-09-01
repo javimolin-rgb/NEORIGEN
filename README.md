@@ -17,6 +17,14 @@ Rediseño del sitio web de Neorigen — casas prefabricadas sustentables — ent
 1. Settings → Pages → Deploy from a branch → rama `main`, carpeta `/ (root)`.
 2. El sitio queda disponible en `https://<usuario>.github.io/<repo>/`.
 
+## Hero mobile/tablet
+
+En pantallas de hasta 900px de ancho, el hero de portada no usa la foto circular flotante con anillos decorativos que se ve en desktop — esa foto y el tag de "Casa Lingüe · 57 m²" estaban calibrados con offsets porcentuales pensados para una columna angosta de escritorio, y al apilarse a ancho completo terminaban saliéndose de la pantalla (el tag cortaba el texto). En su lugar, en ese rango se usa la misma foto como fondo suave detrás del texto, con un degradado oscuro para mantener la legibilidad — sin elementos flotantes que puedan desbordar.
+
+## Favicon
+
+El ícono de la pestaña es solo el isotipo (el techo/casa) en azul marino (`--navy`, `#011E2F`) sobre fondo transparente — sin tile ni fondo de color detrás.
+
 ## Por qué hay dos builds (fragmento vs. documento completo)
 
 El HTML del sitio nació como un **fragmento** (sin `<!DOCTYPE>`/`<html>`/`<head>`/`<body>`) porque así lo requiere el Artifact de Claude, que envuelve el contenido con su propio `<head>` (incluye `meta viewport` automáticamente). Ese mismo fragmento, servido tal cual en GitHub Pages (un hosting estático real que no envuelve nada), hacía que el navegador cayera en **quirks mode** y, en mobile, usara un viewport virtual de ~980px en vez del ancho real de pantalla — eso es lo que causaba los márgenes/proporciones rotas al ver el sitio en el celular. `build_standalone.py` arregla esto agregando el doctype y el `meta viewport` explícitamente para la versión que se publica en este repo.
