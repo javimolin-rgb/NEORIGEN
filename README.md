@@ -4,10 +4,11 @@ Rediseño del sitio web de Neorigen — casas prefabricadas sustentables — ent
 
 ## Estructura
 
-- `index.html` — el sitio final, listo para publicar tal cual (por ejemplo con GitHub Pages). Todas las imágenes van incrustadas como base64 dentro del archivo.
-- `src/template.html` — plantilla fuente con placeholders `{{PLACEHOLDER}}` en vez de las imágenes.
-- `src/build.py` — script que reemplaza los placeholders de `template.html` con las imágenes en base64 de `img_b64.py` / `logo_b64.py` y genera `index.html`. Se ejecuta con `python3 src/build.py` desde esta carpeta.
-- `src/img_b64.py` / `src/logo_b64.py` — imágenes del sitio codificadas en base64.
+- `index.html` — el sitio final, **documento HTML completo y autocontenido** (con `<!DOCTYPE html>`, `<head>` con `meta charset` + `meta viewport` + favicon, y `<body>`), listo para publicar tal cual en un hosting estático como GitHub Pages. Todas las imágenes van incrustadas como base64 dentro del archivo.
+- `src/template.html` — plantilla fuente (fragmento, sin doctype/html/head/body) con placeholders `{{PLACEHOLDER}}` en vez de las imágenes. Es la fuente de verdad para todo el contenido/CSS/JS del sitio.
+- `src/build.py` — reemplaza los placeholders de `template.html` con las imágenes en base64 de `img_b64.py` / `logo_b64.py` y genera un `index.html` **fragmento** (pensado para plataformas que envuelven el HTML por su cuenta, como el Artifact de Claude). Se ejecuta con `python3 src/build.py`.
+- `src/build_standalone.py` — toma el fragmento generado por `build.py` y lo envuelve en un documento HTML completo (doctype, `<html>`, `<head>` con meta viewport/charset/favicon, `<body>`) — este es el paso que genera el `index.html` de la raíz del repo, el que de verdad se debe publicar. Se ejecuta después de `build.py`, con `python3 src/build_standalone.py` (asume que ya corriste `build.py` y que existe un `index.html` fragmento en el mismo directorio desde el que lo ejecutas).
+- `src/img_b64.py` / `src/logo_b64.py` — imágenes y favicon del sitio codificados en base64.
 - `assets/planos/` — planos oficiales de cada modelo (fuente: fichas técnicas ya publicadas en neorigen.cl), en la resolución final usada en el sitio.
 - `assets/terminaciones/` — fotos de terminaciones/materiales usadas en la sección "Todo lo necesario para vivir bien, desde el primer día." (fuente: ficha oficial de terminaciones de Neorigen).
 
@@ -15,6 +16,10 @@ Rediseño del sitio web de Neorigen — casas prefabricadas sustentables — ent
 
 1. Settings → Pages → Deploy from a branch → rama `main`, carpeta `/ (root)`.
 2. El sitio queda disponible en `https://<usuario>.github.io/<repo>/`.
+
+## Por qué hay dos builds (fragmento vs. documento completo)
+
+El HTML del sitio nació como un **fragmento** (sin `<!DOCTYPE>`/`<html>`/`<head>`/`<body>`) porque así lo requiere el Artifact de Claude, que envuelve el contenido con su propio `<head>` (incluye `meta viewport` automáticamente). Ese mismo fragmento, servido tal cual en GitHub Pages (un hosting estático real que no envuelve nada), hacía que el navegador cayera en **quirks mode** y, en mobile, usara un viewport virtual de ~980px en vez del ancho real de pantalla — eso es lo que causaba los márgenes/proporciones rotas al ver el sitio en el celular. `build_standalone.py` arregla esto agregando el doctype y el `meta viewport` explícitamente para la versión que se publica en este repo.
 
 ## Notas
 
