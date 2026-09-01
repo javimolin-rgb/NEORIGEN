@@ -1,0 +1,2478 @@
+<title>Neorigen — Vive lo natural</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  /* =========================================================
+     Neorigen — propuesta de rediseño
+     Sistema de marca real (manual 2026): Azul Origen, Verde Pino,
+     Madera, Niebla. Fraunces / Work Sans / IBM Plex Mono.
+     Diseño de marca deliberadamente de un solo mundo visual
+     (no responde a claro/oscuro del sistema, igual que el sitio
+     real) — todos los colores se pintan de forma explícita.
+     ========================================================= */
+  :root{
+    --navy: #011E2F;
+    --navy-ink: #04121C;
+    --navy-700: #0E2A3A;
+    --navy-500: #27404E;
+    --navy-300: #5A6D78;
+    --navy-100: #99A5AC;
+    --mist: #F1F4F3;
+    --mist-dim: #E4E9E7;
+    --paper: #FBFCFB;
+    --pine: #3C4A3E;
+    --pine-100: #EAEEE9;
+    --timber: #A9764A;
+    --timber-ink: #7E5836;
+    --ink: #10201C;
+    --ink-soft: #45524D;
+    --white: #FFFFFF;
+    --line: rgba(1,30,47,0.14);
+    --line-onnavy: rgba(255,255,255,0.16);
+    --shadow: 0 24px 70px -24px rgba(1,20,31,0.38);
+    --radius: 4px;
+    --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+    --font-body: "Work Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+  ::selection{ background: var(--timber); color: var(--white); }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:600; text-wrap:balance; margin:0; color: var(--navy); line-height:1.22; }
+  p{ margin:0; }
+  button{ font-family:inherit; }
+  :focus-visible{ outline:2px solid var(--timber); outline-offset:3px; }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 clamp(20px,4vw,48px); }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display:flex; align-items:center; gap:0.65em;
+    color: var(--timber);
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:currentColor; opacity:0.7; display:inline-block; }
+  .eyebrow.on-dark{ color:#D9B48C; }
+
+  .hairline{ height:1px; background:var(--line); border:0; margin:0; }
+  .hairline.on-dark{ background:var(--line-onnavy); }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:0.55em;
+    font-family: var(--font-body); font-weight:600; font-size:0.92rem;
+    padding: 0.9em 1.5em; border-radius: var(--radius);
+    border:1px solid transparent; cursor:pointer;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn:active{ transform: translateY(0); }
+  .btn-primary{ background: var(--timber); color: var(--white); }
+  .btn-primary:hover{ background: var(--timber-ink); }
+  .btn-navy{ background: var(--navy); color: var(--white); }
+  .btn-navy:hover{ background: var(--navy-ink); }
+  .btn-ghost{ background:transparent; border-color: var(--line); color: var(--navy); }
+  .btn-ghost:hover{ border-color: var(--navy); }
+  .btn-ghost.on-dark{ border-color: var(--line-onnavy); color: var(--white); }
+  .btn-ghost.on-dark:hover{ border-color: var(--white); }
+  .btn-sm{ padding:0.6em 1.1em; font-size:0.82rem; }
+  .btn[data-arrow]::after{ content:"→"; transition: transform .18s ease; }
+  .btn[data-arrow]:hover::after{ transform: translateX(3px); }
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    background: var(--navy-ink); color: var(--navy-100);
+    font-family: var(--font-mono); font-size:0.74rem; letter-spacing:0.02em;
+  }
+  .topbar .wrap{ display:flex; align-items:center; justify-content:space-between; height:38px; gap:16px; }
+  .topbar__contacts{ display:flex; align-items:center; gap:18px; }
+  .topbar__contacts a{ display:flex; align-items:center; gap:0.5em; color:var(--navy-100); transition:color .15s ease; }
+  .topbar__contacts a:hover{ color:var(--white); }
+  .topbar__badge{ color:#D9B48C; letter-spacing:0.08em; }
+  .icon-sm{ width:14px; height:14px; flex:none; }
+  @media (max-width:760px){ .topbar__label{ display:none; } }
+  @media (max-width:560px){ .topbar__badge{ display:none; } }
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background: rgba(1,18,28,0.9);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-onnavy);
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:86px; gap:24px; }
+  .nav__brand{ display:flex; align-items:center; gap:12px; flex:none; }
+  .nav__brand img{ height:58px; width:auto; }
+  .nav__menu{ display:flex; align-items:center; gap:2px; list-style:none; margin:0; padding:0; }
+  .nav__menu > li{ position:relative; }
+  .nav__link{
+    display:flex; align-items:center; gap:0.4em;
+    font-family:var(--font-mono); font-size:0.74rem; letter-spacing:0.09em; text-transform:uppercase;
+    color: var(--mist); padding:10px 14px; border-radius:var(--radius);
+    transition: color .15s ease, background .15s ease;
+  }
+  .nav__link:hover, .nav__link[aria-current="page"]{ color:var(--white); background:rgba(255,255,255,0.06); }
+  .nav__caret{ width:9px; height:9px; opacity:.75; }
+  .nav__dropdown{
+    position:absolute; top:calc(100% + 6px); left:0; min-width:200px;
+    background: var(--navy-700); border:1px solid var(--line-onnavy); border-radius:var(--radius);
+    box-shadow: var(--shadow); padding:6px; opacity:0; visibility:hidden; transform:translateY(4px);
+    transition: opacity .16s ease, transform .16s ease, visibility .16s ease;
+  }
+  .nav__item:hover .nav__dropdown, .nav__item:focus-within .nav__dropdown{ opacity:1; visibility:visible; transform:translateY(0); }
+  .nav__dropdown a{
+    display:block; padding:10px 12px; border-radius:calc(var(--radius) - 1px);
+    font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--mist);
+  }
+  .nav__dropdown a:hover{ background:rgba(255,255,255,0.08); color:var(--white); }
+  .nav__cta{ display:flex; align-items:center; gap:10px; flex:none; }
+  .nav__burger{
+    display:none; width:42px; height:42px; border-radius:var(--radius); border:1px solid var(--line-onnavy);
+    background:transparent; align-items:center; justify-content:center; cursor:pointer; flex:none;
+  }
+  .nav__burger svg{ width:18px; height:18px; }
+  @media (max-width:980px){
+    .nav__menu{ display:none; }
+    .nav__burger{ display:inline-flex; }
+    .nav .wrap{ height:72px; }
+    .nav__brand img{ height:46px; }
+  }
+
+  /* mobile drawer */
+  .drawer{
+    position:fixed; inset:0; z-index:60; background:var(--navy-ink);
+    transform:translateX(100%); transition:transform .28s ease; overflow-y:auto;
+  }
+  .drawer.is-open{ transform:translateX(0); }
+  .drawer__top{ display:flex; align-items:center; justify-content:space-between; padding:18px clamp(20px,5vw,40px); border-bottom:1px solid var(--line-onnavy); }
+  .drawer__close{ width:42px; height:42px; border-radius:var(--radius); border:1px solid var(--line-onnavy); background:transparent; display:flex; align-items:center; justify-content:center; }
+  .drawer__close svg{ width:16px; height:16px; }
+  .drawer__list{ list-style:none; margin:0; padding:24px clamp(20px,5vw,40px) 40px; display:flex; flex-direction:column; }
+  .drawer__list a{ font-family:var(--font-display); font-size:1.7rem; color:var(--white); padding:14px 0; border-bottom:1px solid var(--line-onnavy); }
+  .drawer__sub{ padding-left:18px; display:flex; flex-direction:column; }
+  .drawer__sub a{ font-family:var(--font-mono); font-size:0.9rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--navy-100); padding:10px 0; border-bottom:0; }
+
+  /* ---------- sections ---------- */
+  .section{ padding: clamp(64px,9vw,120px) 0; }
+  .section--dark{ background: var(--navy-ink); color: var(--mist); }
+  .section--dark h2, .section--dark h3{ color:var(--white); }
+  .section--mist{ background: var(--mist); }
+  .section--pine{ background: var(--pine); color: var(--mist); }
+  .section--pine h2, .section--pine h3{ color:var(--white); }
+
+  .head-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:44px; }
+  .head-row h2{ font-size:clamp(2rem,3.6vw,3rem); max-width:20ch; margin-top:14px; }
+  .head-row p{ max-width:38ch; color:var(--ink-soft); }
+  .section--dark .head-row p{ color:var(--navy-100); }
+
+  /* ---------- hero ---------- */
+  .hero{ position:relative; background:var(--navy-ink); color:var(--white); overflow:hidden; }
+  .hero__grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center; padding:clamp(64px,10vw,120px) 0 clamp(56px,8vw,96px); position:relative; z-index:2; }
+  .hero__kicker{ margin-bottom:22px; }
+  .hero h1{ color:var(--white); font-size:clamp(2.6rem,6vw,5.1rem); line-height:1.04; letter-spacing:-0.01em; }
+  .hero h1 em{ font-style:italic; color:#D9B48C; }
+  .hero__lede{ margin-top:26px; font-size:1.08rem; color:var(--navy-100); max-width:46ch; }
+  .hero__cta{ display:flex; gap:14px; margin-top:36px; flex-wrap:wrap; }
+  .hero__stats{ display:flex; gap:clamp(24px,4vw,44px); margin-top:56px; flex-wrap:wrap; }
+  .hero__stat b{ display:block; font-family:var(--font-display); font-size:2.1rem; color:var(--white); }
+  .hero__stat span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-300); }
+
+  .hero__art{ position:relative; display:flex; align-items:center; justify-content:center; }
+  .hero__mark{ width:min(420px,90%); opacity:0.94; filter:drop-shadow(0 30px 60px rgba(0,0,0,0.45)); }
+  .hero__photo{ position:relative; z-index:2; width:min(430px,85%); aspect-ratio:1/1; border-radius:50%; overflow:hidden; box-shadow:0 30px 70px -10px rgba(0,0,0,0.55); border:1px solid var(--line-onnavy); }
+  .hero__photo img{ width:100%; height:100%; object-fit:cover; }
+  .hero__ring{ position:absolute; inset:0; border:1px solid var(--line-onnavy); border-radius:50%; transform:scale(1.35); }
+  .hero__ring::before{ content:""; position:absolute; inset:26px; border:1px solid var(--line-onnavy); border-radius:50%; }
+  .hero__ring--accent{ border:2px solid transparent; border-top-color:#D9B48C; border-right-color:#D9B48C; transform:scale(1.52) rotate(-38deg); opacity:0.6; }
+  .hero__crosses{ position:absolute; inset:0; z-index:1; }
+  .hero__cross{ position:absolute; width:15px; height:15px; opacity:0.5; }
+  .hero__cross::before, .hero__cross::after{ content:""; position:absolute; background:#D9B48C; }
+  .hero__cross::before{ top:7px; left:0; width:15px; height:1.5px; }
+  .hero__cross::after{ top:0; left:7px; width:1.5px; height:15px; }
+  .hero__dot{ position:absolute; width:7px; height:7px; border-radius:50%; background:#D9B48C; opacity:0.65; }
+  .hero__seal{ position:absolute; top:4%; right:0%; z-index:3; width:72px; height:72px; border-radius:50%; background:var(--pine); border:1px solid rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center; box-shadow:0 16px 32px -10px rgba(0,0,0,0.55); }
+  .hero__seal svg{ width:30px; height:30px; color:var(--mist); }
+  .hero__photo-tag{ position:absolute; left:-4%; bottom:10%; z-index:3; display:flex; align-items:center; gap:8px; background:rgba(4,18,28,0.86); backdrop-filter:blur(6px); border:1px solid var(--line-onnavy); color:var(--white); font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; padding:9px 14px; border-radius:20px; box-shadow:0 16px 32px -12px rgba(0,0,0,0.55); white-space:nowrap; }
+  .hero__photo-tag b{ color:#D9B48C; font-weight:600; }
+  .hero__grid-bg{ position:absolute; inset:0; z-index:1; opacity:0.5;
+    background-image: linear-gradient(var(--line-onnavy) 1px, transparent 1px), linear-gradient(90deg, var(--line-onnavy) 1px, transparent 1px);
+    background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 60% at 60% 20%, black, transparent 75%);
+  }
+  @media (max-width:900px){
+    .hero__grid{ grid-template-columns:1fr; }
+    .hero__art{ order:-1; padding-top:36px; }
+    .hero__photo{ width:260px; }
+    .hero__seal{ width:56px; height:56px; }
+    .hero__seal svg{ width:24px; height:24px; }
+    .hero__photo-tag{ font-size:0.6rem; padding:7px 11px; }
+  }
+
+  /* ---------- modelo destacado ---------- */
+  .feature-model{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:clamp(32px,6vw,80px); align-items:center; }
+  .feature-model__art{ background:var(--mist-dim); border:1px solid var(--line); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; aspect-ratio:6/5; position:relative; overflow:hidden; }
+  .feature-model__art img{ width:52%; }
+  .feature-model__tag{ position:absolute; top:18px; left:18px; background:var(--navy); color:var(--white); font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; padding:6px 10px; border-radius:2px; }
+  .feature-model__specs{ display:flex; gap:28px; margin:26px 0 30px; flex-wrap:wrap; }
+  .spec b{ display:block; font-family:var(--font-display); font-size:1.7rem; color:var(--navy); }
+  .spec span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); }
+  .feature-model__actions{ display:flex; gap:14px; margin-top:8px; flex-wrap:wrap; }
+  @media (max-width:820px){ .feature-model{ grid-template-columns:1fr; } }
+
+  /* ---------- llave en mano ---------- */
+  .kit-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-onnavy); border:1px solid var(--line-onnavy); border-radius:var(--radius); overflow:hidden; }
+  .kit-item{ position:relative; background:var(--navy-ink); display:flex; flex-direction:column; justify-content:flex-end; min-height:190px; overflow:hidden; }
+  .kit-item__photo-wrap{ position:absolute; inset:0; z-index:0; }
+  .kit-item__photo{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.92); transition:transform 0.6s ease; }
+  .kit-item:hover .kit-item__photo{ transform:scale(1.05); }
+  .kit-item::after{ content:""; position:absolute; inset:0; z-index:0; background:linear-gradient(180deg, rgba(1,30,47,0) 38%, rgba(1,30,47,0.86) 100%); }
+  .kit-item__label{ position:relative; z-index:1; margin:0 16px 15px; font-family:var(--font-mono); font-size:0.74rem; letter-spacing:0.02em; color:#fff; line-height:1.35; }
+  @media (max-width:900px){ .kit-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .kit-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- personaliza ---------- */
+  .custom-split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,6vw,80px); align-items:center; }
+  .custom-split__art{ position:relative; aspect-ratio:4/5; border-radius:var(--radius); background:var(--navy); display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .custom-split__art::after{ content:""; position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:2; }
+  .split-carousel{ position:absolute; inset:0; }
+  .split-carousel__slide{ position:absolute; inset:0; opacity:0; transition:opacity 1.4s ease; }
+  .split-carousel__slide.is-active{ opacity:1; }
+  .split-carousel__slide img{ width:100%; height:100%; object-fit:cover; }
+  .split-carousel__slide::after{ content:""; position:absolute; inset:0; background:linear-gradient(0deg, rgba(1,30,47,0.55), transparent 45%); }
+  .split-carousel__dots{ position:absolute; left:20px; bottom:18px; z-index:3; display:flex; gap:6px; }
+  .split-carousel__dots span{ width:16px; height:3px; border-radius:2px; background:rgba(255,255,255,0.35); transition:background .3s ease; }
+  .split-carousel__dots span.is-active{ background:#D9B48C; }
+  .custom-split p + p{ margin-top:16px; }
+  .custom-split__list{ list-style:none; margin:24px 0 0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .custom-split__list li{ display:flex; gap:12px; align-items:flex-start; color:var(--ink-soft); font-size:0.96rem; }
+  .custom-split__list svg{ width:16px; height:16px; flex:none; margin-top:4px; color:var(--timber); }
+  @media (max-width:820px){ .custom-split{ grid-template-columns:1fr; } .custom-split__art{ order:-1; } }
+
+  /* ---------- diferenciadores ---------- */
+  .diff-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .diff-item{ background:var(--paper); padding:34px 30px; display:flex; flex-direction:column; gap:16px; }
+  .diff-item__num{ font-family:var(--font-mono); font-size:0.72rem; color:var(--timber); letter-spacing:0.08em; }
+  .diff-item h3{ font-size:1.28rem; }
+  .diff-item p{ color:var(--ink-soft); font-size:0.95rem; }
+  @media (max-width:900px){ .diff-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .diff-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- confianza / trayectoria ---------- */
+  .trust-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(20px,4vw,40px); }
+  .trust-item b{ display:block; font-family:var(--font-display); font-size:clamp(2.1rem,4vw,2.8rem); }
+  .trust-item span{ display:block; margin-top:8px; font-size:0.92rem; color:var(--mist-dim); max-width:24ch; }
+  @media (max-width:820px){ .trust-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ---------- cta final ---------- */
+  .cta-final{ background:var(--timber); color:var(--white); border-radius:var(--radius); padding:clamp(40px,6vw,72px); display:flex; align-items:center; justify-content:space-between; gap:32px; flex-wrap:wrap; }
+  .cta-final h2{ color:var(--white); font-size:clamp(1.9rem,3.4vw,2.6rem); max-width:16ch; }
+  .cta-final .btn-navy{ background:var(--navy-ink); }
+  .cta-final .btn-navy:hover{ background:#000; }
+
+  /* ---------- footer ---------- */
+  .footer{ background:var(--navy-ink); color:var(--navy-100); padding:64px 0 28px; }
+  .footer__top{ display:grid; grid-template-columns:1.3fr 0.9fr 0.9fr 0.9fr; gap:40px; padding-bottom:48px; }
+  .footer__brand img{ height:28px; margin-bottom:18px; }
+  .footer__brand p{ max-width:32ch; color:var(--navy-300); font-size:0.92rem; }
+  .footer__col h4{ font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--mist); margin-bottom:16px; }
+  .footer__col ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  .footer__col a{ font-size:0.92rem; color:var(--navy-100); transition:color .15s ease; }
+  .footer__col a:hover{ color:var(--white); }
+  .footer__social{ display:flex; gap:10px; margin-top:18px; }
+  .footer__social a{ width:36px; height:36px; border:1px solid var(--line-onnavy); border-radius:50%; display:flex; align-items:center; justify-content:center; }
+  .footer__social svg{ width:15px; height:15px; }
+  .footer__social a:hover{ background:rgba(255,255,255,0.08); }
+  .footer__bottom{ display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:0.8rem; color:var(--navy-300); }
+  @media (max-width:900px){ .footer__top{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px){ .footer__top{ grid-template-columns:1fr; } }
+
+  /* ---------- whatsapp float ---------- */
+  .wa-float{
+    position:fixed; right:22px; bottom:22px; z-index:55;
+    width:56px; height:56px; border-radius:50%; background:#25D366; color:#fff;
+    display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow);
+    transition: transform .18s ease;
+  }
+  .wa-float:hover{ transform:scale(1.06); }
+  .wa-float svg{ width:26px; height:26px; }
+
+  /* ---------- casas page ---------- */
+  .tier-block + .tier-block{ margin-top:64px; }
+  .tier-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:28px; flex-wrap:wrap; }
+  .tier-head h3{ font-size:1.5rem; }
+  .tier-head span{ font-family:var(--font-mono); font-size:0.75rem; color:var(--ink-soft); letter-spacing:0.04em; }
+  .model-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .model-card{ border:1px solid var(--line); border-radius:var(--radius); background:var(--paper); display:flex; flex-direction:column; overflow:hidden; transition:border-color .18s ease, box-shadow .18s ease; }
+  .model-card:hover{ border-color:var(--navy-300); box-shadow:var(--shadow); }
+  .model-card__art{ background:var(--mist-dim); aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .model-card__art img{ filter:none; width:100%; height:100%; object-fit:cover; object-position:center; }
+  .model-card__body{ padding:22px 22px 24px; display:flex; flex-direction:column; gap:14px; flex:1; }
+  .model-card__name{ font-size:1.32rem; }
+  .model-card__specs{ display:flex; gap:16px; flex-wrap:wrap; }
+  .model-card__specs div{ font-family:var(--font-mono); font-size:0.74rem; color:var(--ink-soft); }
+  .model-card__specs b{ color:var(--navy); font-family:var(--font-body); font-weight:700; display:block; font-size:0.95rem; }
+  .model-card__actions{ margin-top:auto; display:flex; gap:10px; padding-top:6px; }
+  @media (max-width:980px){ .model-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:620px){ .model-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- contacto page ---------- */
+  .contact-layout{ display:grid; grid-template-columns:1fr 1.3fr; gap:clamp(32px,6vw,72px); align-items:flex-start; }
+  .contact-card{ border:1px solid var(--line); border-radius:var(--radius); padding:30px; background:var(--mist); }
+  .contact-card h3{ font-size:1.2rem; margin-bottom:18px; }
+  .contact-card ul{ list-style:none; margin:0 0 24px; padding:0; display:flex; flex-direction:column; gap:16px; }
+  .contact-card li a, .contact-card li span{ display:flex; gap:12px; align-items:flex-start; font-size:0.95rem; color:var(--ink); }
+  .contact-card li svg{ width:17px; height:17px; flex:none; margin-top:2px; color:var(--timber); }
+  .contact-card li small{ display:block; color:var(--ink-soft); font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:3px; }
+
+  form.qform{ display:flex; flex-direction:column; gap:18px; }
+  .qform__row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .qform__field{ display:flex; flex-direction:column; gap:8px; }
+  .qform__field.span-2{ grid-column:1 / -1; }
+  .qform label{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.09em; text-transform:uppercase; color:var(--ink-soft); }
+  .qform input, .qform select, .qform textarea{
+    font-family:var(--font-body); font-size:0.95rem; color:var(--ink); background:var(--white);
+    border:1px solid var(--line); border-radius:var(--radius); padding:12px 14px; width:100%;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .qform input:focus, .qform select:focus, .qform textarea:focus{ border-color:var(--navy); box-shadow:0 0 0 3px rgba(1,30,47,0.08); outline:none; }
+  .qform textarea{ resize:vertical; min-height:110px; }
+  .qform__foot{ display:flex; align-items:center; gap:16px; margin-top:6px; flex-wrap:wrap; }
+  .qform__note{ font-size:0.82rem; color:var(--ink-soft); }
+  .qform__success{ display:none; align-items:center; gap:12px; background:var(--pine-100); border:1px solid var(--pine); color:var(--pine); padding:16px 18px; border-radius:var(--radius); font-size:0.92rem; }
+  .qform__success.is-visible{ display:flex; }
+  .qform__success svg{ width:18px; height:18px; flex:none; }
+  @media (max-width:820px){ .contact-layout{ grid-template-columns:1fr; } }
+  @media (max-width:560px){ .qform__row{ grid-template-columns:1fr; } }
+
+  .concept-badge{
+    position:fixed; left:16px; bottom:16px; z-index:55;
+    font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase;
+    background:rgba(1,18,28,0.88); color:var(--mist-dim); border:1px solid var(--line-onnavy);
+    padding:8px 12px; border-radius:20px; backdrop-filter:blur(6px);
+  }
+  @media (max-width:620px){ .concept-badge{ display:none; } }
+
+  [data-page]{ display:none; }
+  [data-page].is-active{ display:block; animation:page-enter 0.5s cubic-bezier(0.16,1,0.3,1); }
+  @keyframes page-enter{
+    from{ opacity:0; transform:translateY(10px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* ---------- Shared inner-page hero ---------- */
+  .page-hero{ position:relative; overflow:hidden; background:var(--navy-ink); color:var(--white); padding:clamp(56px,8vw,96px) 0 clamp(40px,6vw,64px); }
+  .page-hero h1{ color:var(--white); font-size:clamp(2.4rem,5vw,3.8rem); max-width:20ch; position:relative; z-index:2; }
+  .page-hero p{ margin-top:20px; color:var(--navy-100); max-width:56ch; font-size:1.05rem; position:relative; z-index:2; }
+  .page-hero .wrap{ position:relative; z-index:2; }
+  .page-hero::before{ content:""; position:absolute; inset:0; z-index:1; }
+
+  /* each top-level section gets its own accent + background treatment, so
+     the pages read as distinct places rather than one reused navy banner */
+  .page-hero--casas{ border-top:3px solid var(--timber); }
+  .page-hero--casas::before{ background-image:linear-gradient(var(--line-onnavy) 1px, transparent 1px), linear-gradient(90deg, var(--line-onnavy) 1px, transparent 1px); background-size:48px 48px; mask-image:linear-gradient(180deg, transparent, black 60%); opacity:0.6; }
+  .page-hero--casas .eyebrow{ color:#D9B48C; }
+
+  .page-hero--modelo{ padding-top:28px; border-top:2px solid var(--timber); }
+  .page-hero--modelo::before{ display:none; }
+
+  .page-hero--contacto{ background:var(--pine); }
+  .page-hero--contacto .eyebrow{ color:var(--mist); }
+  .page-hero--contacto p{ color:var(--pine-100); }
+
+  .page-hero--galeria{ background-size:cover; background-position:center; }
+  .page-hero--galeria::before{ background:linear-gradient(100deg, rgba(4,18,28,0.94) 0%, rgba(4,18,28,0.82) 45%, rgba(4,18,28,0.55) 100%), url('{{IMG_GALERIA_2}}'); background-size:cover; background-position:center; }
+  .page-hero--galeria .eyebrow{ color:#D9B48C; }
+
+  .page-hero--blog{ background:var(--navy-700); }
+  .page-hero--blog::before{ background-image:repeating-linear-gradient(90deg, var(--line-onnavy) 0 1px, transparent 1px 96px); opacity:0.8; }
+  .page-hero--blog .eyebrow{ color:var(--mist); }
+
+  .page-hero--faq{ background:var(--navy); }
+  .page-hero--faq::before{ background-image:radial-gradient(var(--line-onnavy) 1px, transparent 1px); background-size:18px 18px; opacity:0.7; }
+  .page-hero--faq .eyebrow{ color:#D9B48C; }
+
+  .page-hero--quienes{ background:var(--mist); }
+  .page-hero--quienes::before{ background-image:linear-gradient(rgba(1,30,47,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(1,30,47,0.05) 1px, transparent 1px); background-size:56px 56px; }
+  .page-hero--quienes h1{ color:var(--navy); }
+  .page-hero--quienes p{ color:var(--ink-soft); }
+  .page-hero--quienes .eyebrow.on-dark{ color:var(--timber); }
+
+  .page-hero--promos{ background:linear-gradient(120deg, var(--navy-ink) 55%, var(--timber-ink) 130%); }
+  .page-hero--promos .eyebrow{ color:#F2DCC3; }
+
+  /* ---------- Galería ---------- */
+  .gallery-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .gallery-item{ border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); aspect-ratio:4/3; }
+  .gallery-item img{ width:100%; height:100%; object-fit:cover; display:block; }
+  @media (max-width:700px){ .gallery-grid{ grid-template-columns:1fr; } }
+  .project-list{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .project-list li{ background:var(--paper); padding:22px 24px; display:flex; align-items:baseline; justify-content:space-between; gap:12px; }
+  .project-list li b{ font-size:1.02rem; }
+  .project-list li span{ font-family:var(--font-mono); font-size:0.72rem; color:var(--ink-soft); letter-spacing:0.04em; white-space:nowrap; }
+  @media (max-width:700px){ .project-list{ grid-template-columns:1fr; } }
+
+  /* ---------- Blog ---------- */
+  .blog-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  .blog-card{ background:var(--paper); padding:28px 26px; display:flex; flex-direction:column; gap:10px; }
+  .blog-card time{ font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--timber); }
+  .blog-card h3{ font-size:1.14rem; line-height:1.35; }
+  .blog-card p{ color:var(--ink-soft); font-size:0.92rem; }
+  @media (max-width:820px){ .blog-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Preguntas frecuentes ---------- */
+  .faq-cats{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:44px; }
+  .faq-cat{ font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.03em; border:1px solid var(--line); border-radius:20px; padding:7px 14px; color:var(--ink-soft); }
+  .faq-list{ display:flex; flex-direction:column; }
+  .faq-item{ border-bottom:1px solid var(--line); padding:22px 0; }
+  .faq-item summary{ cursor:pointer; font-size:1.02rem; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:baseline; gap:16px; }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{ content:"+"; font-family:var(--font-mono); font-size:1.2rem; color:var(--timber); flex:none; }
+  .faq-item[open] summary::after{ content:"–"; }
+  .faq-item p{ margin-top:14px; color:var(--ink-soft); max-width:64ch; }
+
+  /* ---------- Promociones ---------- */
+  .promo-card{ border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--paper); }
+  .promo-card__band{ background:var(--pine); color:var(--white); padding:clamp(32px,5vw,52px); }
+  .promo-card__band .eyebrow{ color:#CFE0D2; }
+  .promo-card__band h2{ color:var(--white); margin-top:14px; font-size:clamp(1.5rem,2.6vw,2.1rem); line-height:1.32; max-width:36ch; }
+  .promo-card__band p{ margin-top:20px; color:var(--mist-dim); max-width:52ch; }
+  .promo-card__body{ padding:clamp(28px,4vw,40px); }
+  .promo-card__body h4{ font-size:0.95rem; margin-bottom:14px; }
+  .promo-card__body ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+  .promo-card__body li{ font-size:0.9rem; color:var(--ink-soft); padding-left:18px; position:relative; }
+  .promo-card__body li::before{ content:"—"; position:absolute; left:0; color:var(--timber); }
+
+  /* ---------- Quiénes somos ---------- */
+  .about-lede{ font-size:clamp(1.3rem,2.4vw,1.7rem); max-width:34ch; color:var(--ink); line-height:1.4; }
+  .values-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:20px; }
+  .values-grid .diff-item{ padding:28px 24px; }
+  @media (max-width:900px){ .values-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .values-grid{ grid-template-columns:1fr; } }
+</style>
+
+<span class="concept-badge">Propuesta de rediseño — no es el sitio en producción</span>
+
+<!-- ============ TOPBAR ============ -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="topbar__contacts">
+      <a href="https://wa.me/56942355665" target="_blank" rel="noopener">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 11.5a8 8 0 1 1-3.8-6.8"/><path d="M20 4l-5.2 7.5-2.3-2"/></svg>
+        <span class="topbar__label">+56 9 4235 5665</span>
+      </a>
+      <a href="https://instagram.com/neorigen_chile" target="_blank" rel="noopener">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+        <span class="topbar__label">@neorigen_chile</span>
+      </a>
+      <a href="https://facebook.com/neorigenchile" target="_blank" rel="noopener">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h2V6h-2c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.3l.7-3H14V9z"/></svg>
+        <span class="topbar__label">neorigenchile</span>
+      </a>
+    </div>
+    <span class="topbar__badge">Vive lo natural</span>
+  </div>
+</div>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="nav__brand" href="#/" data-route="/">
+      <img src="{{LOGO_WORDMARK_WHITE}}" alt="Neorigen">
+    </a>
+    <ul class="nav__menu">
+      <li><a class="nav__link" href="#/casas" data-route="/casas">Casas</a></li>
+      <li><a class="nav__link" href="#/galeria" data-route="/galeria">Galería</a></li>
+      <li><a class="nav__link" href="#/preguntas-frecuentes" data-route="/preguntas-frecuentes">Preg. frecuentes</a></li>
+      <li><a class="nav__link" href="#/blog" data-route="/blog">Blog</a></li>
+      <li class="nav__item">
+        <a class="nav__link" href="#/quienes-somos" data-route="/quienes-somos">
+          Neorigen
+          <svg class="nav__caret" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3.5l3 3 3-3"/></svg>
+        </a>
+        <div class="nav__dropdown">
+          <a href="#/quienes-somos" data-route="/quienes-somos">Quiénes somos</a>
+          <a href="#/promociones" data-route="/promociones">Promociones</a>
+        </div>
+      </li>
+      <li><a class="nav__link" href="#/contacto" data-route="/contacto">Contacto</a></li>
+    </ul>
+    <div class="nav__cta">
+      <a class="btn btn-primary btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+      <button class="nav__burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<div class="drawer" id="drawer">
+  <div class="drawer__top">
+    <img src="{{LOGO_WORDMARK_WHITE}}" alt="Neorigen" style="height:24px">
+    <button class="drawer__close" id="drawerClose" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5l14 14M19 5L5 19"/></svg>
+    </button>
+  </div>
+  <ul class="drawer__list">
+    <li><a href="#/" data-route="/">Home</a></li>
+    <li><a href="#/casas" data-route="/casas">Casas</a></li>
+    <li><a href="#/galeria" data-route="/galeria">Galería</a></li>
+    <li><a href="#/preguntas-frecuentes" data-route="/preguntas-frecuentes">Preg. frecuentes</a></li>
+    <li><a href="#/blog" data-route="/blog">Blog</a></li>
+    <li>
+      <a href="#/quienes-somos" data-route="/quienes-somos">Neorigen</a>
+      <div class="drawer__sub">
+        <a href="#/quienes-somos" data-route="/quienes-somos">Quiénes somos</a>
+        <a href="#/promociones" data-route="/promociones">Promociones</a>
+      </div>
+    </li>
+    <li><a href="#/contacto" data-route="/contacto">Contacto</a></li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- ============ PAGE: HOME ============ -->
+<!-- ============================================================ -->
+<main data-page="/" class="is-active">
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero">
+    <div class="hero__grid-bg" aria-hidden="true"></div>
+    <div class="wrap hero__grid">
+      <div>
+        <div class="eyebrow on-dark hero__kicker">Casas prefabricadas sustentables · Chile</div>
+        <h1>Vive lo natural,<br>desde los <em>cimientos</em>.</h1>
+        <p class="hero__lede">Casas llave en mano, diseñadas para adaptarse a tu forma de vivir y construidas con más de 20 años de trayectoria inmobiliaria detrás de cada proyecto.</p>
+        <div class="hero__cta">
+          <a class="btn btn-primary" href="#/casas" data-route="/casas" data-arrow>Ver los 8 modelos</a>
+          <a class="btn btn-ghost on-dark" href="https://wa.me/56942355665" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+        </div>
+        <div class="hero__stats">
+          <div class="hero__stat"><b>8</b><span>Modelos listos</span></div>
+          <div class="hero__stat"><b>57–167 m²</b><span>Por modelo</span></div>
+          <div class="hero__stat"><b>6–8 meses</b><span>Plazo de obra</span></div>
+          <div class="hero__stat"><b>20+ años</b><span>De trayectoria</span></div>
+        </div>
+      </div>
+      <div class="hero__art">
+        <div class="hero__ring" aria-hidden="true"></div>
+        <div class="hero__ring hero__ring--accent" aria-hidden="true"></div>
+        <div class="hero__crosses" aria-hidden="true">
+          <span class="hero__cross" style="top:4%; left:6%;"></span>
+          <span class="hero__cross" style="bottom:8%; right:4%;"></span>
+          <span class="hero__dot" style="top:16%; right:14%;"></span>
+          <span class="hero__dot" style="bottom:2%; left:18%;"></span>
+          <span class="hero__dot" style="top:52%; left:0%;"></span>
+        </div>
+        <div class="hero__photo"><img src="{{IMG_CASA_LINGUE}}" alt="Casa Lingue, modelo Neorigen"></div>
+        <div class="hero__seal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/></svg>
+        </div>
+        <div class="hero__photo-tag"><b>Casa Lingue</b> · 57 m²</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- MODELO DESTACADO ---------- -->
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Modelo destacado</span>
+          <img src="{{IMG_CASA_LINGUE}}" alt="Render axonométrico Casa Lingue" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Casa Lingue</div>
+          <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:16ch;">El modelo más compacto para partir simple.</h2>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Un dormitorio, un baño y una terraza pensada para extender la vida hacia afuera. El punto de entrada a la construcción Neorigen, con el mismo estándar llave en mano que el resto de la familia de modelos.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>1</b><span>Dormitorio</span></div>
+            <div class="spec"><b>1</b><span>Baño</span></div>
+            <div class="spec"><b>57 m²</b><span>Útiles + terrazas</span></div>
+            <div class="spec"><b>6 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/casas/lingue" data-route="/casas/lingue" data-arrow>Ver detalles</a>
+            <a class="btn btn-ghost" href="#/contacto" data-route="/contacto">Cotizar este modelo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- ENTREGA LLAVE EN MANO ---------- -->
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Todo lo necesario para vivir bien, desde el primer día.</h2>
+        </div>
+        <p>Todos los proyectos Neorigen se entregan con todos los elementos necesarios para que puedas disfrutar tu casa desde el momento en que recibes las llaves.</p>
+      </div>
+      <div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- PERSONALIZA TU CASA ---------- -->
+  <section class="section section--mist">
+    <div class="wrap custom-split">
+      <div>
+        <div class="eyebrow">Personaliza tu casa</div>
+        <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:15ch;">¿Piensas en algo distinto? También lo construimos contigo.</h2>
+        <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Si ninguno de los 8 modelos calza exactamente con lo que imaginas, puedes contar con nuestro equipo para ajustar diseño, distribución y materialidad a tu terreno y tu forma de vivir.</p>
+        <ul class="custom-split__list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Distribución y metraje a medida</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Terminaciones y materialidad</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg> Orientación y eficiencia según tu terreno</li>
+        </ul>
+        <a class="btn btn-navy" style="margin-top:28px;" href="#/contacto" data-route="/contacto" data-arrow>Habla con un asesor</a>
+      </div>
+      <div class="custom-split__art">
+        <div class="split-carousel" data-carousel aria-hidden="true">
+          <div class="split-carousel__slide is-active"><img src="{{IMG_CUSTOM_1}}" alt="Obra Neorigen en etapa de envolvente"></div>
+          <div class="split-carousel__slide"><img src="{{IMG_GALERIA_1}}" alt="Vivienda en etapa de envolvente, entorno de bosque nativo junto a un lago"></div>
+          <div class="split-carousel__slide"><img src="{{IMG_CUSTOM_2}}" alt="Estructura de piso y muros en madera, obra Neorigen"></div>
+          <div class="split-carousel__slide"><img src="{{IMG_GALERIA_2}}" alt="Estructura de vivienda sobre pilotes metálicos, en plena obra"></div>
+          <div class="split-carousel__slide"><img src="{{IMG_CUSTOM_3}}" alt="Vivienda Neorigen sobre pilotes, estructura de dos pisos en obra"></div>
+          <div class="split-carousel__slide"><img src="{{IMG_GALERIA_3}}" alt="Equipo trabajando en la estructura de una vivienda Neorigen"></div>
+          <div class="split-carousel__dots">
+            <span class="is-active"></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- QUÉ NOS DIFERENCIA ---------- -->
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Qué nos diferencia</div>
+          <h2>Seis decisiones detrás de cada casa Neorigen.</h2>
+        </div>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-item">
+          <span class="diff-item__num">01</span>
+          <h3>Eficiencia energética</h3>
+          <p>Diseño orientado a minimizar el consumo energético de la vivienda, desde la orientación de cada proyecto.</p>
+        </div>
+        <div class="diff-item">
+          <span class="diff-item__num">02</span>
+          <h3>Accesibilidad universal</h3>
+          <p>Espacios pensados con un diseño inclusivo y cómodo.</p>
+        </div>
+        <div class="diff-item">
+          <span class="diff-item__num">03</span>
+          <h3>Insumos sustentables</h3>
+          <p>Madera proveniente de fuentes naturales.</p>
+        </div>
+        <div class="diff-item">
+          <span class="diff-item__num">04</span>
+          <h3>Rápida construcción</h3>
+          <p>Procesos y gestión de obra eficientes, con plazos definidos desde el inicio del proyecto.</p>
+        </div>
+        <div class="diff-item">
+          <span class="diff-item__num">05</span>
+          <h3>Ecológicas</h3>
+          <p>Integración de cada proyecto con su entorno natural.</p>
+        </div>
+        <div class="diff-item">
+          <span class="diff-item__num">06</span>
+          <h3>Bajo costo</h3>
+          <p>Optimizamos cada aspecto de la construcción, ajustando costos sin comprometer la calidad ni la eficiencia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CONFIANZA / TRAYECTORIA ---------- -->
+  <section class="section section--pine">
+    <div class="wrap">
+      <div class="eyebrow on-dark" style="color:#CFE0D2;">Por qué Neorigen</div>
+      <h2 style="margin-top:14px; max-width:22ch; font-size:clamp(1.9rem,3.2vw,2.6rem);">Construcción con trayectoria, no una promesa nueva.</h2>
+      <div class="trust-grid" style="margin-top:48px;">
+        <div class="trust-item"><b>+20 años</b><span>De trayectoria inmobiliaria detrás del proyecto</span></div>
+        <div class="trust-item"><b>8 modelos</b><span>Listos para construir, de 57 a 167 m²</span></div>
+        <div class="trust-item"><b>6–8 meses</b><span>Plazo estimado de construcción por modelo</span></div>
+        <div class="trust-item"><b>Llave en mano</b><span>Mismo estándar de entrega en los 8 modelos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CTA FINAL ---------- -->
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-final">
+        <h2>¿Conversamos sobre tu proyecto?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="https://wa.me/56942355665" target="_blank" rel="noopener" data-arrow>Escribir por WhatsApp</a>
+          <a class="btn btn-ghost on-dark" style="border-color:rgba(255,255,255,0.5); color:#fff;" href="#/contacto" data-route="/contacto">Ir al formulario</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================ -->
+<!-- ============ PAGE: CASAS / MODELOS ============ -->
+<!-- ============================================================ -->
+<main data-page="/casas">
+  <div class="page-hero page-hero--casas">
+    <div class="wrap">
+      <div class="eyebrow on-dark">Casas para distintos tipos de vida</div>
+      <h1 style="margin-top:16px;">8 modelos, listos para construir.</h1>
+      <p>De 57 a 167 m² útiles, todos con el mismo estándar de entrega llave en mano. Elige un punto de partida — cada modelo se puede ajustar a tu terreno.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+
+      <div class="model-grid">
+
+        <div class="model-card">
+          <div class="model-card__art"><img src="{{IMG_CASA_LINGUE}}" alt="Render axonométrico Casa Lingue"></div>
+          <div class="model-card__body">
+            <h4 class="model-card__name">Casa Lingue</h4>
+            <div class="model-card__specs">
+              <div><b>1</b>Dorm.</div><div><b>1</b>Baño</div><div><b>57 m²</b>Útiles</div><div><b>6 m</b>Plazo</div>
+            </div>
+            <div class="model-card__actions">
+              <a class="btn btn-navy btn-sm" href="#/casas/lingue" data-route="/casas/lingue">Ver detalles</a>
+              <a class="btn btn-ghost btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-card__art"><img src="{{IMG_CASA_HUINGAN}}" alt="Render axonométrico Casa Huingán"></div>
+          <div class="model-card__body">
+            <h4 class="model-card__name">Casa Huingán</h4>
+            <div class="model-card__specs">
+              <div><b>2</b>Dorm.</div><div><b>2</b>Baños</div><div><b>73 m²</b>Útiles</div><div><b>6 m</b>Plazo</div>
+            </div>
+            <div class="model-card__actions">
+              <a class="btn btn-navy btn-sm" href="#/casas/huingan" data-route="/casas/huingan">Ver detalles</a>
+              <a class="btn btn-ghost btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-card__art"><img src="{{IMG_CASA_PEUMO}}" alt="Render axonométrico Casa Peumo"></div>
+          <div class="model-card__body">
+            <h4 class="model-card__name">Casa Peumo</h4>
+            <div class="model-card__specs">
+              <div><b>2</b>Dorm.</div><div><b>2</b>Baños</div><div><b>87 m²</b>Útiles</div><div><b>6 m</b>Plazo</div>
+            </div>
+            <div class="model-card__actions">
+              <a class="btn btn-navy btn-sm" href="#/casas/peumo" data-route="/casas/peumo">Ver detalles</a>
+              <a class="btn btn-ghost btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-card__art"><img src="{{IMG_CASA_BOLDO}}" alt="Render axonométrico Casa Boldo"></div>
+          <div class="model-card__body">
+            <h4 class="model-card__name">Casa Boldo</h4>
+            <div class="model-card__specs">
+              <div><b>4</b>Dorm.</div><div><b>2</b>Baños</div><div><b>103,9 m²</b>Útiles</div><div><b>7 m</b>Plazo</div>
+            </div>
+            <div class="model-card__actions">
+              <a class="btn btn-navy btn-sm" href="#/casas/boldo" data-route="/casas/boldo">Ver detalles</a>
+              <a class="btn btn-ghost btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-card__art"><img src="{{IMG_CASA_HUINGAN_FAMILIAR}}" alt="Render axonométrico Casa Huingán Familiar"></div>
+          <div class="model-card__body">
+            <h4 class="model-card__name">Casa Huingán Familiar</h4>
+            <div class="model-card__specs">
+              <div><b>3</b>Dorm.</div><div><b>3</b>Baños</div><div><b>106 m²</b>Útiles</div><div><b>7 m</b>Plazo</div>
+            </div>
+            <div class="model-card__actions">
+              <a class="btn btn-navy btn-sm" href="#/casas/huingan-familiar" data-route="/casas/huingan-familiar">Ver detalles</a>
+              <a class="btn btn-ghost btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-card__art"><img src="{{IMG_CASA_ROBLE}}" alt="Render axonométrico Casa Roble"></div>
+          <div class="model-card__body">
+            <h4 class="model-card__name">Casa Roble</h4>
+            <div class="model-card__specs">
+              <div><b>4</b>Dorm.</div><div><b>3</b>Baños</div><div><b>142 m²</b>Útiles</div><div><b>8 m</b>Plazo</div>
+            </div>
+            <div class="model-card__actions">
+              <a class="btn btn-navy btn-sm" href="#/casas/roble" data-route="/casas/roble">Ver detalles</a>
+              <a class="btn btn-ghost btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-card__art"><img src="{{IMG_CASA_MAITEN}}" alt="Render axonométrico Casa Maitén"></div>
+          <div class="model-card__body">
+            <h4 class="model-card__name">Casa Maitén</h4>
+            <div class="model-card__specs">
+              <div><b>4</b>Dorm.</div><div><b>4</b>Baños</div><div><b>145 m²</b>Útiles</div><div><b>8 m</b>Plazo</div>
+            </div>
+            <div class="model-card__actions">
+              <a class="btn btn-navy btn-sm" href="#/casas/maiten" data-route="/casas/maiten">Ver detalles</a>
+              <a class="btn btn-ghost btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="model-card">
+          <div class="model-card__art"><img src="{{IMG_CASA_COIHUE}}" alt="Render axonométrico Casa Coihue"></div>
+          <div class="model-card__body">
+            <h4 class="model-card__name">Casa Coihue</h4>
+            <div class="model-card__specs">
+              <div><b>3</b>Dorm.</div><div><b>3</b>Baños</div><div><b>167 m²</b>Útiles</div><div><b>8 m</b>Plazo</div>
+            </div>
+            <div class="model-card__actions">
+              <a class="btn btn-navy btn-sm" href="#/casas/coihue" data-route="/casas/coihue">Ver detalles</a>
+              <a class="btn btn-ghost btn-sm" href="#/contacto" data-route="/contacto">Cotizar</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cta-final" style="margin-top:72px;">
+        <h2>¿No encuentras tu modelo ideal?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir un diseño a medida</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ -->
+<!-- ============ PAGES: DETALLE DE MODELOS DE CASA ============ -->
+<!-- ============================================================ -->
+<main data-page="/casas/lingue">
+  <div class="page-hero page-hero--modelo" style="padding-bottom:0;">
+    <div class="wrap">
+      <a href="#/casas" data-route="/casas" style="display:inline-flex; align-items:center; gap:8px; color:var(--navy-100); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a los 8 modelos
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Casa Lingue</span>
+          <img src="{{IMG_CASA_LINGUE}}" alt="Render Casa Lingue" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Modelo de casa</div>
+          <h1 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem);">Casa Lingue</h1>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Casa Lingue tiene 1 dormitorio y 1 baño, con 57 m² útiles y un plazo de obra estimado en 6 meses. Es el modelo con menor superficie de los 8 disponibles. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>1</b><span>Dormitorio</span></div>
+            <div class="spec"><b>1</b><span>Baño</span></div>
+            <div class="spec"><b>57 m²</b><span>Útiles</span></div>
+            <div class="spec"><b>6 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar este modelo</a>
+            <a class="btn btn-ghost" href="https://wa.me/56942355665" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Planta y distribución</div>
+          <h2>Así se distribuye Casa Lingue.</h2>
+        </div>
+        <p>Plano oficial de la ficha técnica de este modelo, con la distribución real de recintos y metraje.</p>
+      </div>
+      <div style="margin-top:8px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);">
+        <img src="{{IMG_PLANO_LINGUE}}" alt="Plano y distribución de Casa Lingue" style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Casa Lingue incluye todo esto desde el primer día.</h2>
+        </div>
+        <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
+      </div>
+<div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Otros modelos</div>
+          <h2>Compara con el resto de la familia.</h2>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan" data-route="/casas/huingan">Casa Huingán</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/peumo" data-route="/casas/peumo">Casa Peumo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/boldo" data-route="/casas/boldo">Casa Boldo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan-familiar" data-route="/casas/huingan-familiar">Casa Huingán Familiar</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/roble" data-route="/casas/roble">Casa Roble</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/maiten" data-route="/casas/maiten">Casa Maitén</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/coihue" data-route="/casas/coihue">Casa Coihue</a>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Te interesa Casa Lingue?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main data-page="/casas/huingan">
+  <div class="page-hero page-hero--modelo" style="padding-bottom:0;">
+    <div class="wrap">
+      <a href="#/casas" data-route="/casas" style="display:inline-flex; align-items:center; gap:8px; color:var(--navy-100); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a los 8 modelos
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Casa Huingán</span>
+          <img src="{{IMG_CASA_HUINGAN}}" alt="Render Casa Huingán" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Modelo de casa</div>
+          <h1 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem);">Casa Huingán</h1>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Casa Huingán tiene 2 dormitorios y 2 baños, con 73 m² útiles y un plazo de obra estimado en 6 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>2</b><span>Dormitorios</span></div>
+            <div class="spec"><b>2</b><span>Baños</span></div>
+            <div class="spec"><b>73 m²</b><span>Útiles</span></div>
+            <div class="spec"><b>6 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar este modelo</a>
+            <a class="btn btn-ghost" href="https://wa.me/56942355665" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Planta y distribución</div>
+          <h2>Así se distribuye Casa Huingán.</h2>
+        </div>
+        <p>Plano oficial de la ficha técnica de este modelo, con la distribución real de recintos y metraje.</p>
+      </div>
+      <div style="margin-top:8px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);">
+        <img src="{{IMG_PLANO_HUINGAN}}" alt="Plano y distribución de Casa Huingán" style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Casa Huingán incluye todo esto desde el primer día.</h2>
+        </div>
+        <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
+      </div>
+<div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Otros modelos</div>
+          <h2>Compara con el resto de la familia.</h2>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <a class="btn btn-ghost btn-sm" href="#/casas/lingue" data-route="/casas/lingue">Casa Lingue</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/peumo" data-route="/casas/peumo">Casa Peumo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/boldo" data-route="/casas/boldo">Casa Boldo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan-familiar" data-route="/casas/huingan-familiar">Casa Huingán Familiar</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/roble" data-route="/casas/roble">Casa Roble</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/maiten" data-route="/casas/maiten">Casa Maitén</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/coihue" data-route="/casas/coihue">Casa Coihue</a>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Te interesa Casa Huingán?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main data-page="/casas/peumo">
+  <div class="page-hero page-hero--modelo" style="padding-bottom:0;">
+    <div class="wrap">
+      <a href="#/casas" data-route="/casas" style="display:inline-flex; align-items:center; gap:8px; color:var(--navy-100); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a los 8 modelos
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Casa Peumo</span>
+          <img src="{{IMG_CASA_PEUMO}}" alt="Render Casa Peumo" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Modelo de casa</div>
+          <h1 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem);">Casa Peumo</h1>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Casa Peumo tiene 2 dormitorios y 2 baños, con 87 m² útiles y un plazo de obra estimado en 6 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>2</b><span>Dormitorios</span></div>
+            <div class="spec"><b>2</b><span>Baños</span></div>
+            <div class="spec"><b>87 m²</b><span>Útiles</span></div>
+            <div class="spec"><b>6 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar este modelo</a>
+            <a class="btn btn-ghost" href="https://wa.me/56942355665" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Planta y distribución</div>
+          <h2>Así se distribuye Casa Peumo.</h2>
+        </div>
+        <p>Plano oficial de la ficha técnica de este modelo, con la distribución real de recintos y metraje.</p>
+      </div>
+      <div style="margin-top:8px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);">
+        <img src="{{IMG_PLANO_PEUMO}}" alt="Plano y distribución de Casa Peumo" style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Casa Peumo incluye todo esto desde el primer día.</h2>
+        </div>
+        <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
+      </div>
+<div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Otros modelos</div>
+          <h2>Compara con el resto de la familia.</h2>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <a class="btn btn-ghost btn-sm" href="#/casas/lingue" data-route="/casas/lingue">Casa Lingue</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan" data-route="/casas/huingan">Casa Huingán</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/boldo" data-route="/casas/boldo">Casa Boldo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan-familiar" data-route="/casas/huingan-familiar">Casa Huingán Familiar</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/roble" data-route="/casas/roble">Casa Roble</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/maiten" data-route="/casas/maiten">Casa Maitén</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/coihue" data-route="/casas/coihue">Casa Coihue</a>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Te interesa Casa Peumo?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main data-page="/casas/boldo">
+  <div class="page-hero page-hero--modelo" style="padding-bottom:0;">
+    <div class="wrap">
+      <a href="#/casas" data-route="/casas" style="display:inline-flex; align-items:center; gap:8px; color:var(--navy-100); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a los 8 modelos
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Casa Boldo</span>
+          <img src="{{IMG_CASA_BOLDO}}" alt="Render Casa Boldo" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Modelo de casa</div>
+          <h1 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem);">Casa Boldo</h1>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Casa Boldo tiene 4 dormitorios y 2 baños, con 103,9 m² útiles y un plazo de obra estimado en 7 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>4</b><span>Dormitorios</span></div>
+            <div class="spec"><b>2</b><span>Baños</span></div>
+            <div class="spec"><b>103,9 m²</b><span>Útiles</span></div>
+            <div class="spec"><b>7 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar este modelo</a>
+            <a class="btn btn-ghost" href="https://wa.me/56942355665" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Planta y distribución</div>
+          <h2>Así se distribuye Casa Boldo.</h2>
+        </div>
+        <p>Plano oficial de la ficha técnica de este modelo, con la distribución real de recintos y metraje.</p>
+      </div>
+      <div style="margin-top:8px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);">
+        <img src="{{IMG_PLANO_BOLDO}}" alt="Plano y distribución de Casa Boldo" style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Casa Boldo incluye todo esto desde el primer día.</h2>
+        </div>
+        <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
+      </div>
+<div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Otros modelos</div>
+          <h2>Compara con el resto de la familia.</h2>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <a class="btn btn-ghost btn-sm" href="#/casas/lingue" data-route="/casas/lingue">Casa Lingue</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan" data-route="/casas/huingan">Casa Huingán</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/peumo" data-route="/casas/peumo">Casa Peumo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan-familiar" data-route="/casas/huingan-familiar">Casa Huingán Familiar</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/roble" data-route="/casas/roble">Casa Roble</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/maiten" data-route="/casas/maiten">Casa Maitén</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/coihue" data-route="/casas/coihue">Casa Coihue</a>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Te interesa Casa Boldo?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main data-page="/casas/huingan-familiar">
+  <div class="page-hero page-hero--modelo" style="padding-bottom:0;">
+    <div class="wrap">
+      <a href="#/casas" data-route="/casas" style="display:inline-flex; align-items:center; gap:8px; color:var(--navy-100); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a los 8 modelos
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Casa Huingán Familiar</span>
+          <img src="{{IMG_CASA_HUINGAN_FAMILIAR}}" alt="Render Casa Huingán Familiar" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Modelo de casa</div>
+          <h1 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem);">Casa Huingán Familiar</h1>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Casa Huingán Familiar tiene 3 dormitorios y 3 baños, con 106 m² útiles y un plazo de obra estimado en 7 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>3</b><span>Dormitorios</span></div>
+            <div class="spec"><b>3</b><span>Baños</span></div>
+            <div class="spec"><b>106 m²</b><span>Útiles</span></div>
+            <div class="spec"><b>7 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar este modelo</a>
+            <a class="btn btn-ghost" href="https://wa.me/56942355665" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Planta y distribución</div>
+          <h2>Así se distribuye Casa Huingán Familiar.</h2>
+        </div>
+        <p>Plano oficial de la ficha técnica de este modelo, con la distribución real de recintos y metraje.</p>
+      </div>
+      <div style="margin-top:8px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);">
+        <img src="{{IMG_PLANO_HUINGAN_FAMILIAR}}" alt="Plano y distribución de Casa Huingán Familiar" style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Casa Huingán Familiar incluye todo esto desde el primer día.</h2>
+        </div>
+        <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
+      </div>
+<div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Otros modelos</div>
+          <h2>Compara con el resto de la familia.</h2>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <a class="btn btn-ghost btn-sm" href="#/casas/lingue" data-route="/casas/lingue">Casa Lingue</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan" data-route="/casas/huingan">Casa Huingán</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/peumo" data-route="/casas/peumo">Casa Peumo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/boldo" data-route="/casas/boldo">Casa Boldo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/roble" data-route="/casas/roble">Casa Roble</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/maiten" data-route="/casas/maiten">Casa Maitén</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/coihue" data-route="/casas/coihue">Casa Coihue</a>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Te interesa Casa Huingán Familiar?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main data-page="/casas/roble">
+  <div class="page-hero page-hero--modelo" style="padding-bottom:0;">
+    <div class="wrap">
+      <a href="#/casas" data-route="/casas" style="display:inline-flex; align-items:center; gap:8px; color:var(--navy-100); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a los 8 modelos
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Casa Roble</span>
+          <img src="{{IMG_CASA_ROBLE}}" alt="Render Casa Roble" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Modelo de casa</div>
+          <h1 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem);">Casa Roble</h1>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Casa Roble tiene 4 dormitorios y 3 baños, con 142 m² útiles y un plazo de obra estimado en 8 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>4</b><span>Dormitorios</span></div>
+            <div class="spec"><b>3</b><span>Baños</span></div>
+            <div class="spec"><b>142 m²</b><span>Útiles</span></div>
+            <div class="spec"><b>8 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar este modelo</a>
+            <a class="btn btn-ghost" href="https://wa.me/56942355665" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Planta y distribución</div>
+          <h2>Así se distribuye Casa Roble.</h2>
+        </div>
+        <p>Plano oficial de la ficha técnica de este modelo, con la distribución real de recintos y metraje.</p>
+      </div>
+      <div style="margin-top:8px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);">
+        <img src="{{IMG_PLANO_ROBLE}}" alt="Plano y distribución de Casa Roble" style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Casa Roble incluye todo esto desde el primer día.</h2>
+        </div>
+        <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
+      </div>
+<div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Otros modelos</div>
+          <h2>Compara con el resto de la familia.</h2>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <a class="btn btn-ghost btn-sm" href="#/casas/lingue" data-route="/casas/lingue">Casa Lingue</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan" data-route="/casas/huingan">Casa Huingán</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/peumo" data-route="/casas/peumo">Casa Peumo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/boldo" data-route="/casas/boldo">Casa Boldo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan-familiar" data-route="/casas/huingan-familiar">Casa Huingán Familiar</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/maiten" data-route="/casas/maiten">Casa Maitén</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/coihue" data-route="/casas/coihue">Casa Coihue</a>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Te interesa Casa Roble?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main data-page="/casas/maiten">
+  <div class="page-hero page-hero--modelo" style="padding-bottom:0;">
+    <div class="wrap">
+      <a href="#/casas" data-route="/casas" style="display:inline-flex; align-items:center; gap:8px; color:var(--navy-100); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a los 8 modelos
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Casa Maitén</span>
+          <img src="{{IMG_CASA_MAITEN}}" alt="Render Casa Maitén" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Modelo de casa</div>
+          <h1 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem);">Casa Maitén</h1>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Casa Maitén tiene 4 dormitorios y 4 baños, con 145 m² útiles y un plazo de obra estimado en 8 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>4</b><span>Dormitorios</span></div>
+            <div class="spec"><b>4</b><span>Baños</span></div>
+            <div class="spec"><b>145 m²</b><span>Útiles</span></div>
+            <div class="spec"><b>8 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar este modelo</a>
+            <a class="btn btn-ghost" href="https://wa.me/56942355665" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Planta y distribución</div>
+          <h2>Así se distribuye Casa Maitén.</h2>
+        </div>
+        <p>Plano oficial de la ficha técnica de este modelo, con la distribución real de recintos y metraje.</p>
+      </div>
+      <div style="margin-top:8px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);">
+        <img src="{{IMG_PLANO_MAITEN}}" alt="Plano y distribución de Casa Maitén" style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Casa Maitén incluye todo esto desde el primer día.</h2>
+        </div>
+        <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
+      </div>
+<div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Otros modelos</div>
+          <h2>Compara con el resto de la familia.</h2>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <a class="btn btn-ghost btn-sm" href="#/casas/lingue" data-route="/casas/lingue">Casa Lingue</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan" data-route="/casas/huingan">Casa Huingán</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/peumo" data-route="/casas/peumo">Casa Peumo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/boldo" data-route="/casas/boldo">Casa Boldo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan-familiar" data-route="/casas/huingan-familiar">Casa Huingán Familiar</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/roble" data-route="/casas/roble">Casa Roble</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/coihue" data-route="/casas/coihue">Casa Coihue</a>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Te interesa Casa Maitén?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<main data-page="/casas/coihue">
+  <div class="page-hero page-hero--modelo" style="padding-bottom:0;">
+    <div class="wrap">
+      <a href="#/casas" data-route="/casas" style="display:inline-flex; align-items:center; gap:8px; color:var(--navy-100); font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a los 8 modelos
+      </a>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="feature-model">
+        <div class="feature-model__art">
+          <span class="feature-model__tag">Casa Coihue</span>
+          <img src="{{IMG_CASA_COIHUE}}" alt="Render Casa Coihue" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div>
+          <div class="eyebrow">Modelo de casa</div>
+          <h1 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem);">Casa Coihue</h1>
+          <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;">Casa Coihue tiene 3 dormitorios y 3 baños, con 167 m² útiles y un plazo de obra estimado en 8 meses. Es el modelo con mayor superficie de los 8 disponibles. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+          <div class="feature-model__specs">
+            <div class="spec"><b>3</b><span>Dormitorios</span></div>
+            <div class="spec"><b>3</b><span>Baños</span></div>
+            <div class="spec"><b>167 m²</b><span>Útiles</span></div>
+            <div class="spec"><b>8 meses</b><span>Plazo estimado</span></div>
+          </div>
+          <div class="feature-model__actions">
+            <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar este modelo</a>
+            <a class="btn btn-ghost" href="https://wa.me/56942355665" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Planta y distribución</div>
+          <h2>Así se distribuye Casa Coihue.</h2>
+        </div>
+        <p>Plano oficial de la ficha técnica de este modelo, con la distribución real de recintos y metraje.</p>
+      </div>
+      <div style="margin-top:8px; border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);">
+        <img src="{{IMG_PLANO_COIHUE}}" alt="Plano y distribución de Casa Coihue" style="width:100%; height:auto; display:block;">
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow on-dark">Entrega llave en mano</div>
+          <h2>Casa Coihue incluye todo esto desde el primer día.</h2>
+        </div>
+        <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
+      </div>
+<div class="kit-grid">
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
+          <span class="kit-item__label">Ventanas Termopanel</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Muro Albayalde</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
+          <span class="kit-item__label">Muebles de Cocina y Closets</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
+          <span class="kit-item__label">Estufa de Combustión Lenta</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
+          <span class="kit-item__label">Shower Door</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
+          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
+          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
+        </div>
+        <div class="kit-item">
+          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
+          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Otros modelos</div>
+          <h2>Compara con el resto de la familia.</h2>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:8px;">
+          <a class="btn btn-ghost btn-sm" href="#/casas/lingue" data-route="/casas/lingue">Casa Lingue</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan" data-route="/casas/huingan">Casa Huingán</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/peumo" data-route="/casas/peumo">Casa Peumo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/boldo" data-route="/casas/boldo">Casa Boldo</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/huingan-familiar" data-route="/casas/huingan-familiar">Casa Huingán Familiar</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/roble" data-route="/casas/roble">Casa Roble</a>
+          <a class="btn btn-ghost btn-sm" href="#/casas/maiten" data-route="/casas/maiten">Casa Maitén</a>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Te interesa Casa Coihue?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Pedir cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ -->
+<!-- ============ PAGE: CONTACTO ============ -->
+<!-- ============================================================ -->
+<main data-page="/contacto">
+  <div class="page-hero page-hero--contacto">
+    <div class="wrap">
+      <div class="eyebrow on-dark">Contacto</div>
+      <h1 style="margin-top:16px;">Conversemos sobre tu proyecto.</h1>
+      <p>Cuéntanos qué estás buscando y te contactamos para coordinar una cotización. También puedes escribirnos directo por WhatsApp.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap contact-layout">
+
+      <div class="contact-card">
+        <h3>Datos de contacto</h3>
+        <ul>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 11.5a8 8 0 1 1-3.8-6.8"/><path d="M20 4l-5.2 7.5-2.3-2"/></svg>
+            <a href="https://wa.me/56942355665" target="_blank" rel="noopener"><small>WhatsApp / Teléfono</small>+56 9 4235 5665</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <a href="mailto:neorigenchile@gmail.com"><small>Email</small>neorigenchile@gmail.com</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.4 7-11.5A7 7 0 0 0 5 9.5C5 14.6 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+            <span><small>Oficina central</small>Lo Arcaya 1759, Vitacura, Santiago</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+            <a href="https://instagram.com/neorigen_chile" target="_blank" rel="noopener"><small>Instagram</small>@neorigen_chile</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h2V6h-2c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.3l.7-3H14V9z"/></svg>
+            <a href="https://facebook.com/neorigenchile" target="_blank" rel="noopener"><small>Facebook</small>neorigenchile</a>
+          </li>
+        </ul>
+        <hr class="hairline">
+        <p style="margin-top:20px; font-size:0.86rem; color:var(--ink-soft);">Casas prefabricadas, sustentables y llave en mano. Más de 20 años de trayectoria inmobiliaria.</p>
+      </div>
+
+      <div>
+        <div id="qformSuccess" class="qform__success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></svg>
+          <span>¡Gracias por tu mensaje! Te contactaremos a la brevedad.</span>
+        </div>
+
+        <form class="qform" id="quoteForm">
+          <div class="qform__row">
+            <div class="qform__field">
+              <label for="f-nombre">Nombre</label>
+              <input id="f-nombre" name="nombre" type="text" required>
+            </div>
+            <div class="qform__field">
+              <label for="f-apellido">Apellido</label>
+              <input id="f-apellido" name="apellido" type="text" required>
+            </div>
+          </div>
+          <div class="qform__row">
+            <div class="qform__field span-2">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" required>
+            </div>
+          </div>
+          <div class="qform__row">
+            <div class="qform__field">
+              <label for="f-prefijo">Prefijo</label>
+              <input id="f-prefijo" name="prefijo" type="text" placeholder="+56" value="+56">
+            </div>
+            <div class="qform__field">
+              <label for="f-telefono">Teléfono</label>
+              <input id="f-telefono" name="telefono" type="tel" required>
+            </div>
+          </div>
+          <div class="qform__row">
+            <div class="qform__field span-2">
+              <label for="f-modelo">Elige tu casa</label>
+              <select id="f-modelo" name="modelo">
+                <option>Aún no decido</option>
+                <option>Casa Lingue — 57 m²</option>
+                <option>Casa Huingán — 73 m²</option>
+                <option>Casa Peumo — 87 m²</option>
+                <option>Casa Boldo — 103,9 m²</option>
+                <option>Casa Huingán Familiar — 106 m²</option>
+                <option>Casa Roble — 142 m²</option>
+                <option>Casa Maitén — 145 m²</option>
+                <option>Casa Coihue — 167 m²</option>
+                <option>Diseño a medida</option>
+              </select>
+            </div>
+          </div>
+          <div class="qform__row">
+            <div class="qform__field span-2">
+              <label for="f-lugar">Lugar de construcción</label>
+              <input id="f-lugar" name="lugar" type="text" placeholder="Comuna / región">
+            </div>
+          </div>
+          <div class="qform__row">
+            <div class="qform__field span-2">
+              <label for="f-mensaje">Mensaje</label>
+              <textarea id="f-mensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto, terreno o plazos"></textarea>
+            </div>
+          </div>
+          <div class="qform__foot">
+            <button class="btn btn-primary" type="submit">Enviar</button>
+            <span class="qform__note">Formulario de demostración — no envía datos a ningún servidor.</span>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ -->
+<!-- ============ PAGE: GALERÍA ============ -->
+<!-- ============================================================ -->
+<main data-page="/galeria">
+  <div class="page-hero page-hero--galeria">
+    <div class="wrap">
+      <div class="eyebrow on-dark">Galería</div>
+      <h1 style="margin-top:16px;">Nuestros proyectos, en distintas etapas.</h1>
+      <p>Te invitamos a conocer una selección de nuestros proyectos, que reflejan nuestro compromiso con la excelencia y la innovación en la construcción.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="{{IMG_SITE_GALLERY_1}}" alt="Acceso al proyecto Las Roblerías, Curicó"></div>
+        <div class="gallery-item"><img src="{{IMG_GALERIA_4}}" alt="Fundaciones de piso en avance de obra, con vista al lago"></div>
+        <div class="gallery-item"><img src="{{IMG_GALERIA_1}}" alt="Vivienda en etapa de envolvente, entorno de bosque nativo junto a un lago"></div>
+        <div class="gallery-item"><img src="{{IMG_SITE_GALLERY_4}}" alt="Inicio de obra — excavación de fundaciones"></div>
+        <div class="gallery-item"><img src="{{IMG_GALERIA_2}}" alt="Estructura de vivienda sobre pilotes metálicos, en plena obra"></div>
+        <div class="gallery-item"><img src="{{IMG_SITE_GALLERY_2}}" alt="Canal de Chiloé, uno de los territorios donde Neorigen construye"></div>
+        <div class="gallery-item"><img src="{{IMG_GALERIA_3}}" alt="Equipo trabajando en la estructura de una vivienda Neorigen"></div>
+        <div class="gallery-item"><img src="{{IMG_SITE_GALLERY_3}}" alt="Acceso a uno de nuestros terrenos en construcción"></div>
+      </div>
+
+      <div class="cta-final" style="margin-top:64px;">
+        <h2>¿Quieres ver más de cerca un proyecto?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Cotizar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ -->
+<!-- ============ PAGE: BLOG ============ -->
+<!-- ============================================================ -->
+<main data-page="/blog">
+  <div class="page-hero page-hero--blog">
+    <div class="wrap">
+      <div class="eyebrow on-dark">Blog</div>
+      <h1 style="margin-top:16px;">Notas sobre construcción sustentable.</h1>
+      <p>Eficiencia energética, materialidad y proceso constructivo, explicados por el equipo Neorigen.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="blog-grid">
+        <div class="blog-card">
+          <time>28 abr 2026</time>
+          <h3><a href="https://www.neorigen.cl/post/vivir-de-forma-sustentable-el-nuevo-est%C3%A1ndar-en-las-casas-de-neorigen" target="_blank" rel="noopener" style="color:inherit;">Vivir de forma sustentable: el nuevo estándar en las casas de Neorigen</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>7 ene 2026</time>
+          <h3><a href="https://www.neorigen.cl/post/inspiraci%C3%B3n-y-estilo-de-vida-neorigen" target="_blank" rel="noopener" style="color:inherit;">Inspiración y Estilo de Vida Neorigen</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>30 sept 2025</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Recuperadores de Calor: Eficiencia energética en ambientes naturales</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>2 sept 2025</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Muro Trombe: Eficiencia y Sostenibilidad para tu Hogar</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>25 jul 2025</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Viviendas Off-Grid: Desconectarse para Reconectarse con un Futuro Verde</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>29 abr 2025</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Ventanas termopanel: tu mejor aliado para un refugio eficiente, cómodo y conectado con la naturaleza</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>12 mar 2025</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Construcción Inteligente: Adaptando Materialidades y Diseño a Cada Clima en Chile</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>17 dic 2024</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Diseños Personalizables que Marcan la Diferencia</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>11 nov 2024</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Beneficios de la Separación de Aguas Grises: Innovación y Sostenibilidad en el Hogar</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>22 oct 2024</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Energía solar: ahorros y sostenibilidad con paneles fotovoltaicos</a></h3>
+        </div>
+        <div class="blog-card">
+          <time>7 oct 2024</time>
+          <h3><a href="https://www.neorigen.cl/blog" target="_blank" rel="noopener" style="color:inherit;">Fachada Ventilada: El Secreto del Confort Térmico y la Eficiencia en la Arquitectura Neorigen</a></h3>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ -->
+<!-- ============ PAGE: PREGUNTAS FRECUENTES ============ -->
+<!-- ============================================================ -->
+<main data-page="/preguntas-frecuentes">
+  <div class="page-hero page-hero--faq">
+    <div class="wrap">
+      <div class="eyebrow on-dark">Preguntas frecuentes</div>
+      <h1 style="margin-top:16px;">Resolvemos tus dudas.</h1>
+      <p>Las preguntas que más recibimos sobre Neorigen, respondidas directamente por el equipo.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="faq-cats">
+        <span class="faq-cat">Sobre Neorigen</span>
+        <span class="faq-cat">Diseño y Personalización</span>
+        <span class="faq-cat">Valores y Presupuestos</span>
+        <span class="faq-cat">Construcción y Proceso</span>
+        <span class="faq-cat">Garantías y Postventa</span>
+        <span class="faq-cat">Contacto y Cotización</span>
+        <span class="faq-cat">Sustentabilidad y Eficiencia</span>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>¿Qué es Neorigen?</summary>
+          <p>Neorigen es una empresa especializada en el diseño y construcción de viviendas modernas, eficientes y sustentables, pensadas para integrarse naturalmente con su entorno y mejorar la forma de habitar. Desarrollamos proyectos personalizados que combinan diseño, funcionalidad, eficiencia energética y una experiencia de construcción cercana y transparente, adaptándonos a las necesidades reales de cada cliente y terreno.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué diferencia a Neorigen de una constructora tradicional?</summary>
+          <p>Neorigen combina diseño, eficiencia y una visión más consciente de habitar. No buscamos solo construir una casa, sino desarrollar espacios funcionales, cálidos y conectados con el entorno natural.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué tipo de casas construyen?</summary>
+          <p>Construimos casas prediseñadas y personalizadas de distintos estilos y tamaños: refugios, casas familiares, segundas viviendas, proyectos turísticos y soluciones habitacionales on y off-grid.</p>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué medidas toman para garantizar la calidad y la durabilidad de la construcción?</summary>
+          <p>Utilizamos materiales de alta calidad y trabajamos con profesionales experimentados en cada etapa del proceso de construcción. Además, realizamos inspecciones regulares para asegurarnos de que se cumplan los estándares de calidad.</p>
+        </details>
+      </div>
+
+      <div class="cta-final" style="margin-top:56px;">
+        <h2>¿Tienes otra pregunta?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="#/contacto" data-route="/contacto" data-arrow>Escríbenos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ -->
+<!-- ============ PAGE: QUIÉNES SOMOS ============ -->
+<!-- ============================================================ -->
+<main data-page="/quienes-somos">
+  <div class="page-hero page-hero--quienes">
+    <div class="wrap">
+      <div class="eyebrow on-dark">Quiénes somos</div>
+      <h1 style="margin-top:16px;">Más de 20 años de trayectoria, un origen distinto.</h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="about-lede">En Neorigen, creemos que una vivienda no solo debe construirse bien, sino también mejorar profundamente la calidad de vida de quienes la habitan.</p>
+      <p style="margin-top:24px; color:var(--ink-soft); max-width:68ch;">A partir de más de 20 años de experiencia en la industria inmobiliaria, nuestro fundador ha desarrollado una visión profundamente orientada al bienestar de las personas, entendiendo que una vivienda va mucho más allá de su construcción o diseño. Su trayectoria le ha permitido identificar, a lo largo de los años, aquellos detalles que realmente impactan la experiencia de habitar un espacio: la eficiencia térmica, la iluminación natural, la funcionalidad, la relación con el entorno y la capacidad de una vivienda de adaptarse a la vida real de quienes la habitan.</p>
+      <p style="margin-top:18px; color:var(--ink-soft); max-width:68ch;">Esa experiencia, sumada a una mirada cercana y consciente de las nuevas formas de vivir, ha dado origen a una propuesta enfocada en crear espacios más humanos, eficientes y conectados con las necesidades actuales, donde la arquitectura, la sustentabilidad y la calidad de vida conviven en equilibrio.</p>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,6vw,72px);">
+      <div>
+        <div class="eyebrow on-dark">Nuestra misión</div>
+        <p style="margin-top:16px; color:var(--white); font-size:1.15rem; max-width:44ch;">Ofrecer construcciones innovadoras, eficientes y sostenibles que se integren de manera armoniosa con el entorno natural.</p>
+        <p style="margin-top:14px; color:var(--navy-100); max-width:44ch;">Lo que nos distingue es nuestra capacidad para adaptar cada proyecto a tus necesidades únicas, asegurando que no solo cumpla con tus expectativas, sino que también contribuya a un futuro más sustentable.</p>
+      </div>
+      <div>
+        <div class="eyebrow on-dark">Nuestra visión</div>
+        <p style="margin-top:16px; color:var(--white); font-size:1.15rem; max-width:44ch;">Un mundo donde la construcción sea sinónimo de sustentabilidad, accesibilidad y personalización.</p>
+        <p style="margin-top:14px; color:var(--navy-100); max-width:44ch;">Aspiramos a ser la opción preferida para quienes buscan un equilibrio entre innovación tecnológica y cuidado del planeta.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="head-row">
+        <div>
+          <div class="eyebrow">Nuestros valores</div>
+          <h2>Cinco principios detrás de cada proyecto.</h2>
+        </div>
+      </div>
+      <div class="values-grid">
+        <div class="diff-item">
+          <h3>Innovación</h3>
+          <p>Búsqueda constante de nuevas tecnologías y métodos que mejoren la eficiencia y la sostenibilidad de nuestras construcciones.</p>
+        </div>
+        <div class="diff-item">
+          <h3>Sostenibilidad</h3>
+          <p>Cuidamos nuestro planeta empleando materiales y técnicas de construcción ecológicas.</p>
+        </div>
+        <div class="diff-item">
+          <h3>Calidad</h3>
+          <p>Nos esforzamos por que cada vivienda que construimos cumpla con los estándares más exigentes.</p>
+        </div>
+        <div class="diff-item">
+          <h3>Personalización</h3>
+          <p>Cada cliente es único: trabajamos estrechamente con ellos para crear viviendas que reflejen sus necesidades y deseos específicos.</p>
+        </div>
+        <div class="diff-item">
+          <h3>Servicio al cliente</h3>
+          <p>Guiamos a cada cliente a través del proceso de construcción con transparencia y dedicación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--mist">
+    <div class="wrap">
+      <div class="eyebrow">Nuestro enfoque</div>
+      <p style="margin-top:16px; max-width:64ch; color:var(--ink-soft); font-size:1.05rem;">Utilizamos un enfoque integral y personalizado para cada proyecto. Desde el primer contacto hasta la entrega, nuestros clientes pueden esperar un proceso transparente, diseñado para hacer realidad sus proyectos de manera clara y sin complicaciones.</p>
+      <a class="btn btn-navy" style="margin-top:28px;" href="#/contacto" data-route="/contacto" data-arrow>Conversemos sobre tu proyecto</a>
+    </div>
+  </section>
+</main>
+
+<!-- ============================================================ -->
+<!-- ============ PAGE: PROMOCIONES ============ -->
+<!-- ============================================================ -->
+<main data-page="/promociones">
+  <div class="page-hero page-hero--promos">
+    <div class="wrap">
+      <div class="eyebrow on-dark">Promociones</div>
+      <h1 style="margin-top:16px;">Beneficios por tiempo limitado.</h1>
+      <p>Cuando hay una promoción vigente, la vas a encontrar aquí, con sus condiciones completas.</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+
+      <div class="promo-card">
+        <div class="promo-card__band">
+          <div class="eyebrow on-dark">Promoción finalizada</div>
+          <h2>"Contrata tu Refugio Neorigen y recibe Kit Starlink instalado de regalo"</h2>
+          <p>Vigente entre el 1 de marzo y el 30 de abril de 2026 — finalizada. La dejamos documentada aquí como referencia de las promociones que hemos ofrecido.</p>
+        </div>
+        <div class="promo-card__body">
+          <h4>Condiciones que aplicaron</h4>
+          <ul>
+            <li>Firma de contrato de construcción dentro del período de vigencia.</li>
+            <li>Cumplimiento de los pagos iniciales según las condiciones comerciales de Neorigen.</li>
+            <li>Contrato vigente hasta el inicio de las obras del proyecto.</li>
+            <li>Beneficio: kit Starlink Residencial Mini con instalación básica incluida (no incluye el plan mensual del servicio).</li>
+            <li>No acumulable con otras promociones o beneficios comerciales.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta-final" style="margin-top:48px;">
+        <h2>¿Quieres que te avisemos de la próxima promoción?</h2>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a class="btn btn-navy" href="https://wa.me/56942355665" target="_blank" rel="noopener" data-arrow>Escribir por WhatsApp</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img src="{{LOGO_WORDMARK_WHITE}}" alt="Neorigen">
+        <p>Casas prefabricadas, sustentables y personalizadas. Más de 20 años de trayectoria inmobiliaria.</p>
+        <div class="footer__social">
+          <a href="https://wa.me/56942355665" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 11.5a8 8 0 1 1-3.8-6.8"/><path d="M20 4l-5.2 7.5-2.3-2"/></svg></a>
+          <a href="https://instagram.com/neorigen_chile" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/></svg></a>
+          <a href="https://facebook.com/neorigenchile" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 9h2V6h-2c-1.7 0-3 1.3-3 3v2H9v3h2v6h3v-6h2.3l.7-3H14V9z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>Casas</h4>
+        <ul>
+          <li><a href="#/casas" data-route="/casas">Ver todos los modelos</a></li>
+          <li><a href="#/galeria" data-route="/galeria">Galería</a></li>
+          <li><a href="#/promociones" data-route="/promociones">Promociones</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Neorigen</h4>
+        <ul>
+          <li><a href="#/quienes-somos" data-route="/quienes-somos">Quiénes somos</a></li>
+          <li><a href="#/blog" data-route="/blog">Blog</a></li>
+          <li><a href="#/preguntas-frecuentes" data-route="/preguntas-frecuentes">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+56942355665">+56 9 4235 5665</a></li>
+          <li><a href="mailto:neorigenchile@gmail.com">neorigenchile@gmail.com</a></li>
+          <li><a href="#/contacto" data-route="/contacto">Lo Arcaya 1759, Vitacura</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="hairline on-dark">
+    <div class="footer__bottom" style="padding-top:24px;">
+      <span>© 2026 Neorigen — Vive lo natural.</span>
+      <span>Propuesta de rediseño de neorigen.cl — no es el sitio en producción.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/56942355665" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 11.5a8 8 0 1 1-3.8-6.8"/><path d="M20 4l-5.2 7.5-2.3-2"/></svg>
+</a>
+
+<script>
+(function(){
+  var pages = Array.prototype.slice.call(document.querySelectorAll('[data-page]'));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('[data-route]'));
+
+  // mobile drawer -- declared before render() so closeDrawer() is safe to call
+  // on the very first render() (fixes: drawer vars used to be defined further
+  // down the script, after render()'s first synchronous call).
+  var drawer = document.getElementById('drawer');
+  var burgerBtn = document.getElementById('burgerBtn');
+  var drawerClose = document.getElementById('drawerClose');
+
+  function openDrawer(){
+    if (!drawer || !burgerBtn) return;
+    drawer.classList.add('is-open');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer(){
+    if (!drawer || !burgerBtn) return;
+    drawer.classList.remove('is-open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  if (burgerBtn) burgerBtn.addEventListener('click', openDrawer);
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (drawer) drawer.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeDrawer); });
+
+  function routeFromHash(){
+    var h = location.hash.replace(/^#/, '');
+    if (h === '' || h === '/') return '/';
+    return h;
+  }
+
+  function render(){
+    var route = routeFromHash();
+    var matched = pages.some(function(p){ return p.getAttribute('data-page') === route; });
+    if (!matched) route = '/';
+    pages.forEach(function(p){
+      p.classList.toggle('is-active', p.getAttribute('data-page') === route);
+    });
+    navLinks.forEach(function(a){
+      var isCurrent = a.getAttribute('data-route') === route;
+      if (a.classList.contains('nav__link')) {
+        if (isCurrent) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      }
+    });
+    window.scrollTo(0, 0);
+    closeDrawer();
+  }
+
+  window.addEventListener('hashchange', render);
+  document.addEventListener('DOMContentLoaded', render);
+  render();
+
+  // contact form (demo only, no backend)
+  var form = document.getElementById('quoteForm');
+  var success = document.getElementById('qformSuccess');
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      success.classList.add('is-visible');
+      form.reset();
+      document.getElementById('f-prefijo').value = '+56';
+      success.scrollIntoView({behavior:'smooth', block:'center'});
+    });
+  }
+
+  // "Personaliza tu casa" photo carousel -- auto-advance, pauses off-screen
+  // and respects prefers-reduced-motion.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-carousel]').forEach(function(car){
+    var slides = Array.prototype.slice.call(car.querySelectorAll('.split-carousel__slide'));
+    var dots = Array.prototype.slice.call(car.querySelectorAll('.split-carousel__dots span'));
+    if (slides.length < 2 || reduceMotion) return;
+    var i = 0, timer = null;
+    function show(n){
+      slides[i].classList.remove('is-active');
+      if (dots[i]) dots[i].classList.remove('is-active');
+      i = n % slides.length;
+      slides[i].classList.add('is-active');
+      if (dots[i]) dots[i].classList.add('is-active');
+    }
+    function start(){
+      if (timer) return;
+      timer = setInterval(function(){ show(i + 1); }, 4200);
+    }
+    function stop(){
+      clearInterval(timer);
+      timer = null;
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){ entry.isIntersecting ? start() : stop(); });
+      }, {threshold:0.2});
+      io.observe(car);
+    } else {
+      start();
+    }
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden) stop(); else start();
+    });
+  });
+})();
+
+  // Fotos reales de terminaciones (definidas una sola vez, aplicadas via data-kit para no duplicar base64 en el HTML)
+  var KIT_PHOTOS = {
+    ventana: "{{IMG_KIT_VENTANA}}",
+    albayalde: "{{IMG_KIT_ALBAYALDE}}",
+    cocina: "{{IMG_KIT_COCINA}}",
+    estufa: "{{IMG_KIT_ESTUFA}}",
+    ducha: "{{IMG_KIT_DUCHA}}",
+    terraza: "{{IMG_KIT_TERRAZA}}",
+    piso: "{{IMG_KIT_PISO}}",
+    metal: "{{IMG_KIT_METAL}}"
+  };
+  document.querySelectorAll('.kit-item__photo[data-kit]').forEach(function(img){
+    var uri = KIT_PHOTOS[img.getAttribute('data-kit')];
+    if (uri) img.src = uri;
+  });
+</script>
