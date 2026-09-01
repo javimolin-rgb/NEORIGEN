@@ -207,15 +207,19 @@
   .section--dark .head-row p{ color:var(--navy-100); }
 
   /* ---------- hero ---------- */
-  .hero{ position:relative; background:var(--navy-ink); color:var(--white); overflow:hidden; }
-  /* padding-top/-bottom only (not the shorthand) -- .hero__grid also carries
-     the shared .wrap class for its side padding + max-width/centering; a
-     3-value padding shorthand here would zero that out on the sides. That
-     was invisible on desktop because .wrap's own max-width:1180px + auto
-     margins center the box with room to spare, but on any viewport
-     narrower than 1180px there's no such margin to hide it, so every hero
-     text line sat flush against the screen edge. */
-  .hero__grid{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; padding-top:clamp(56px,9vw,104px); padding-bottom:clamp(48px,7vw,84px); position:relative; z-index:2; }
+  /* Full-bleed photo instead of a small circular cutout on a flat navy
+     field -- the photo now IS the hero background at every width, with a
+     gradient scrim (darker toward the text side) for legibility. This
+     replaces the old two-column "text | floating circle" layout, which left
+     roughly half the hero as solid flat navy. */
+  .hero{ position:relative; color:var(--white); overflow:hidden;
+    background-image:
+      linear-gradient(100deg, rgba(4,18,28,0.94) 0%, rgba(4,18,28,0.82) 30%, rgba(4,18,28,0.42) 56%, rgba(4,18,28,0.14) 76%, rgba(4,18,28,0.05) 92%),
+      var(--hero-bg);
+    background-size: cover; background-position: center 38%;
+  }
+  .hero__grid{ display:block; padding-top:clamp(72px,12vw,140px); padding-bottom:clamp(64px,10vw,116px); position:relative; z-index:2; }
+  .hero__grid > div:first-child{ max-width:600px; }
   .hero__kicker{ margin-bottom:22px; }
   .hero h1{ color:var(--white); font-size:clamp(2.6rem,6vw,5.1rem); line-height:1.04; letter-spacing:-0.01em; }
   .hero h1 em{ font-style:italic; color:#D9B48C; }
@@ -225,40 +229,27 @@
   .hero__stat b{ display:block; font-family:var(--font-display); font-size:2.1rem; color:var(--white); }
   .hero__stat span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-300); }
 
-  .hero__art{ position:relative; display:flex; align-items:center; justify-content:center; }
-  .hero__mark{ width:min(420px,90%); opacity:0.94; filter:drop-shadow(0 30px 60px rgba(0,0,0,0.45)); }
-  .hero__photo{ position:relative; z-index:2; width:min(540px,94%); aspect-ratio:1/1; border-radius:50%; overflow:hidden; box-shadow:0 30px 70px -10px rgba(0,0,0,0.55); border:1px solid var(--line-onnavy); }
-  .hero__photo img{ width:100%; height:100%; object-fit:cover; }
-  .hero__ring{ position:absolute; inset:0; border:1px solid var(--line-onnavy); border-radius:50%; transform:scale(1.35); }
-  .hero__ring::before{ content:""; position:absolute; inset:26px; border:1px solid var(--line-onnavy); border-radius:50%; }
-  .hero__ring--accent{ border:2px solid transparent; border-top-color:#D9B48C; border-right-color:#D9B48C; transform:scale(1.52) rotate(-38deg); opacity:0.6; }
-  .hero__crosses{ position:absolute; inset:0; z-index:1; }
-  .hero__cross{ position:absolute; width:15px; height:15px; opacity:0.5; }
-  .hero__cross::before, .hero__cross::after{ content:""; position:absolute; background:#D9B48C; }
-  .hero__cross::before{ top:7px; left:0; width:15px; height:1.5px; }
-  .hero__cross::after{ top:0; left:7px; width:1.5px; height:15px; }
-  .hero__dot{ position:absolute; width:7px; height:7px; border-radius:50%; background:#D9B48C; opacity:0.65; }
-  .hero__seal{ position:absolute; top:4%; right:0%; z-index:3; width:72px; height:72px; border-radius:50%; background:var(--pine); border:1px solid rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center; box-shadow:0 16px 32px -10px rgba(0,0,0,0.55); }
-  .hero__seal svg{ width:30px; height:30px; color:var(--mist); }
-  .hero__photo-tag{ position:absolute; left:-4%; bottom:10%; z-index:3; display:flex; align-items:center; gap:8px; background:rgba(4,18,28,0.86); backdrop-filter:blur(6px); border:1px solid var(--line-onnavy); color:var(--white); font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; padding:9px 14px; border-radius:20px; box-shadow:0 16px 32px -12px rgba(0,0,0,0.55); white-space:nowrap; }
+  /* Retired now that the photo fills the whole hero: the small circular
+     photo cutout, its decorative rings/crosses, and the blueprint-grid
+     backdrop pattern. Markup is left in place (unused) rather than pulled,
+     to keep this change to CSS only. */
+  .hero__photo, .hero__ring, .hero__crosses, .hero__grid-bg{ display:none; }
+  /* The two floating badges survive, repositioned over the now-visible
+     photo instead of anchored to the old 540px circle. */
+  .hero__art{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+  .hero__seal{ position:absolute; top:9%; right:6%; z-index:3; width:64px; height:64px; border-radius:50%; background:var(--pine); border:1px solid rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center; box-shadow:0 16px 32px -10px rgba(0,0,0,0.55); }
+  .hero__seal svg{ width:26px; height:26px; color:var(--mist); }
+  .hero__photo-tag{ position:absolute; right:6%; bottom:9%; z-index:3; display:flex; align-items:center; gap:8px; background:rgba(4,18,28,0.86); backdrop-filter:blur(6px); border:1px solid var(--line-onnavy); color:var(--white); font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; padding:9px 14px; border-radius:20px; box-shadow:0 16px 32px -12px rgba(0,0,0,0.55); white-space:nowrap; }
   .hero__photo-tag b{ color:#D9B48C; font-weight:600; }
-  .hero__grid-bg{ position:absolute; inset:0; z-index:1; opacity:0.5;
-    background-image: linear-gradient(var(--line-onnavy) 1px, transparent 1px), linear-gradient(90deg, var(--line-onnavy) 1px, transparent 1px);
-    background-size: 64px 64px; mask-image: radial-gradient(ellipse 80% 60% at 60% 20%, black, transparent 75%);
-  }
   @media (max-width:900px){
-    /* On mobile/tablet the floating circular photo + rings + tag were
-       calibrated for a narrow desktop grid column; stacked full-width they
-       overflowed (the tag's left:-4% bled well past the viewport edge,
-       clipping "Casa Lingüe" to "a Lingüe"). Simpler and cleaner at this
-       size: drop the floating art entirely and use the same photo as a
-       soft background behind the hero text instead. */
-    .hero__grid{ grid-template-columns:1fr; }
+    /* On narrow screens the text column runs full-width, so there's no
+       "clear" side of the photo left for the corner badges to sit over
+       without crossing the text -- hide them and lean on a stronger
+       top-to-bottom scrim instead of the desktop's left-to-right one. */
     .hero__art{ display:none; }
-    .hero__grid-bg{ display:none; }
     .hero{
       background-image:
-        linear-gradient(180deg, rgba(4,18,28,0.32) 0%, rgba(4,18,28,0.88) 58%, var(--navy-ink) 84%),
+        linear-gradient(180deg, rgba(4,18,28,0.34) 0%, rgba(4,18,28,0.88) 58%, var(--navy-ink) 84%),
         var(--hero-bg);
       background-size: cover;
       background-position: center 35%;
@@ -595,6 +586,25 @@
   <!-- ---------- HERO ---------- -->
   <section class="hero" style="--hero-bg:url('{{IMG_CASA_LINGUE}}')">
     <div class="hero__grid-bg" aria-hidden="true"></div>
+    <!-- Full-hero overlay (not nested in .wrap) so the badges float over the
+         full-bleed photo at the true right edge, not the centered 1180px
+         text column. -->
+    <div class="hero__art">
+      <div class="hero__ring" aria-hidden="true"></div>
+      <div class="hero__ring hero__ring--accent" aria-hidden="true"></div>
+      <div class="hero__crosses" aria-hidden="true">
+        <span class="hero__cross" style="top:4%; left:6%;"></span>
+        <span class="hero__cross" style="bottom:8%; right:4%;"></span>
+        <span class="hero__dot" style="top:16%; right:14%;"></span>
+        <span class="hero__dot" style="bottom:2%; left:18%;"></span>
+        <span class="hero__dot" style="top:52%; left:0%;"></span>
+      </div>
+      <div class="hero__photo"><img src="{{IMG_CASA_LINGUE}}" alt="Casa Lingue, modelo Neorigen"></div>
+      <div class="hero__seal" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/></svg>
+      </div>
+      <div class="hero__photo-tag"><b>Casa Lingue</b> · 57 m²</div>
+    </div>
     <div class="wrap hero__grid">
       <div>
         <div class="eyebrow on-dark hero__kicker">Casas prediseñadas sustentables · Chile</div>
@@ -610,22 +620,6 @@
           <div class="hero__stat"><b>6–8 meses</b><span>Plazo de obra</span></div>
           <div class="hero__stat"><b>20+ años</b><span>De trayectoria</span></div>
         </div>
-      </div>
-      <div class="hero__art">
-        <div class="hero__ring" aria-hidden="true"></div>
-        <div class="hero__ring hero__ring--accent" aria-hidden="true"></div>
-        <div class="hero__crosses" aria-hidden="true">
-          <span class="hero__cross" style="top:4%; left:6%;"></span>
-          <span class="hero__cross" style="bottom:8%; right:4%;"></span>
-          <span class="hero__dot" style="top:16%; right:14%;"></span>
-          <span class="hero__dot" style="bottom:2%; left:18%;"></span>
-          <span class="hero__dot" style="top:52%; left:0%;"></span>
-        </div>
-        <div class="hero__photo"><img src="{{IMG_CASA_LINGUE}}" alt="Casa Lingue, modelo Neorigen"></div>
-        <div class="hero__seal" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/></svg>
-        </div>
-        <div class="hero__photo-tag"><b>Casa Lingue</b> · 57 m²</div>
       </div>
     </div>
   </section>
