@@ -230,26 +230,29 @@
   .hero__stat span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-300); }
 
   /* Retired now that the photo fills the whole hero: the small circular
-     photo cutout, its decorative rings/crosses, and the blueprint-grid
-     backdrop pattern. Markup is left in place (unused) rather than pulled,
-     to keep this change to CSS only. */
-  .hero__photo, .hero__ring, .hero__crosses, .hero__grid-bg{ display:none; }
-  /* The two floating badges survive, repositioned over the now-visible
-     photo instead of anchored to the old 540px circle. */
+     photo cutout, its decorative rings/crosses, the blueprint-grid backdrop
+     pattern, and the house-icon seal badge (no longer had anything to visibly
+     anchor to once the surrounding rings were removed, so it read as a
+     random floating icon). Markup is left in place (unused) rather than
+     pulled, to keep this change to CSS only. */
+  .hero__photo, .hero__ring, .hero__crosses, .hero__grid-bg, .hero__seal{ display:none; }
+  /* The photo-tag badge survives, repositioned over the now-visible photo
+     instead of anchored to the old 540px circle. */
   .hero__art{ position:absolute; inset:0; z-index:1; pointer-events:none; }
-  .hero__seal{ position:absolute; top:9%; right:6%; z-index:3; width:64px; height:64px; border-radius:50%; background:var(--pine); border:1px solid rgba(255,255,255,0.18); display:flex; align-items:center; justify-content:center; box-shadow:0 16px 32px -10px rgba(0,0,0,0.55); }
-  .hero__seal svg{ width:26px; height:26px; color:var(--mist); }
   .hero__photo-tag{ position:absolute; right:6%; bottom:9%; z-index:3; display:flex; align-items:center; gap:8px; background:rgba(4,18,28,0.86); backdrop-filter:blur(6px); border:1px solid var(--line-onnavy); color:var(--white); font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase; padding:9px 14px; border-radius:20px; box-shadow:0 16px 32px -12px rgba(0,0,0,0.55); white-space:nowrap; }
   .hero__photo-tag b{ color:#D9B48C; font-weight:600; }
   @media (max-width:900px){
     /* On narrow screens the text column runs full-width, so there's no
-       "clear" side of the photo left for the corner badges to sit over
-       without crossing the text -- hide them and lean on a stronger
-       top-to-bottom scrim instead of the desktop's left-to-right one. */
+       "clear" side of the photo left for the corner badge to sit over
+       without crossing the text -- hide it and lean on a stronger
+       top-to-bottom scrim instead of the desktop's left-to-right one.
+       Darkened further (0.34->0.58 at the top, earlier/harder stop at 50%)
+       so the eyebrow + heading stay legible over a bright sky/mountain
+       backdrop, not just the lower portion of the photo. */
     .hero__art{ display:none; }
     .hero{
       background-image:
-        linear-gradient(180deg, rgba(4,18,28,0.34) 0%, rgba(4,18,28,0.88) 58%, var(--navy-ink) 84%),
+        linear-gradient(180deg, rgba(4,18,28,0.58) 0%, rgba(4,18,28,0.72) 22%, rgba(4,18,28,0.92) 50%, var(--navy-ink) 82%),
         var(--hero-bg);
       background-size: cover;
       background-position: center 35%;
@@ -590,19 +593,6 @@
          full-bleed photo at the true right edge, not the centered 1180px
          text column. -->
     <div class="hero__art">
-      <div class="hero__ring" aria-hidden="true"></div>
-      <div class="hero__ring hero__ring--accent" aria-hidden="true"></div>
-      <div class="hero__crosses" aria-hidden="true">
-        <span class="hero__cross" style="top:4%; left:6%;"></span>
-        <span class="hero__cross" style="bottom:8%; right:4%;"></span>
-        <span class="hero__dot" style="top:16%; right:14%;"></span>
-        <span class="hero__dot" style="bottom:2%; left:18%;"></span>
-        <span class="hero__dot" style="top:52%; left:0%;"></span>
-      </div>
-      <div class="hero__photo"><img src="{{IMG_HERO_BG}}" alt="Casa Roble, modelo Neorigen"></div>
-      <div class="hero__seal" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/></svg>
-      </div>
       <div class="hero__photo-tag"><b>Casa Roble</b> · 142 m²</div>
     </div>
     <div class="wrap hero__grid">
