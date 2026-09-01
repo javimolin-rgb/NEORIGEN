@@ -15,7 +15,7 @@
      ========================================================= */
   :root{
     --navy: #011E2F;
-    --navy-ink: #04121C;
+    --navy-ink: #0A2236;
     --navy-700: #0E2A3A;
     --navy-500: #27404E;
     --navy-300: #5A6D78;
@@ -410,9 +410,9 @@
   @media (max-width:620px){ .concept-badge{ display:none; } }
 
   [data-page]{ display:none; }
-  [data-page].is-active{ display:block; animation:page-enter 0.5s cubic-bezier(0.16,1,0.3,1); }
+  [data-page].is-active{ display:block; animation:page-enter 0.55s cubic-bezier(0.16,1,0.3,1); transition:opacity .18s ease; }
   @keyframes page-enter{
-    from{ opacity:0; transform:translateY(10px); }
+    from{ opacity:0; transform:translateY(14px); }
     to{ opacity:1; transform:translateY(0); }
   }
 
@@ -2428,18 +2428,40 @@
     var route = routeFromHash();
     var matched = pages.some(function(p){ return p.getAttribute('data-page') === route; });
     if (!matched) route = '/';
-    pages.forEach(function(p){
-      p.classList.toggle('is-active', p.getAttribute('data-page') === route);
-    });
-    navLinks.forEach(function(a){
-      var isCurrent = a.getAttribute('data-route') === route;
-      if (a.classList.contains('nav__link')) {
-        if (isCurrent) a.setAttribute('aria-current', 'page');
-        else a.removeAttribute('aria-current');
-      }
-    });
-    window.scrollTo(0, 0);
-    closeDrawer();
+    var current = pages.filter(function(p){ return p.classList.contains('is-active'); })[0];
+    var next = pages.filter(function(p){ return p.getAttribute('data-page') === route; })[0];
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function activate(){
+      pages.forEach(function(p){
+        p.classList.toggle('is-active', p === next);
+      });
+      navLinks.forEach(function(a){
+        var isCurrent = a.getAttribute('data-route') === route;
+        if (a.classList.contains('nav__link')) {
+          if (isCurrent) a.setAttribute('aria-current', 'page');
+          else a.removeAttribute('aria-current');
+        }
+      });
+      window.scrollTo(0, 0);
+      closeDrawer();
+    }
+
+    // Fade the outgoing page to transparent first instead of an instant
+    // display:none swap + hard scroll jump -- the jump then happens while
+    // the screen is briefly blank, so the route change reads as one smooth
+    // motion instead of a jarring cut. Skipped for prefers-reduced-motion.
+    if (current && current !== next && !reduceMotion) {
+      current.style.transition = 'opacity .18s ease';
+      current.style.opacity = '0';
+      window.setTimeout(function(){
+        current.style.opacity = '';
+        current.style.transition = '';
+        activate();
+      }, 180);
+    } else {
+      activate();
+    }
   }
 
   window.addEventListener('hashchange', render);
