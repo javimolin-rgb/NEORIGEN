@@ -60,6 +60,33 @@ replacements = {
     '{{IMG_PLANO_ROBLE}}': img_b64.plano_roble,
     '{{IMG_PLANO_MAITEN}}': img_b64.plano_maiten,
     '{{IMG_PLANO_COIHUE}}': img_b64.plano_coihue,
+
+    # Fotos reales por modelo (de las Fichas tecnicas oficiales) para la
+    # seccion "Entrega llave en mano" de cada pagina de modelo.
+    '{{IMG_MODEL_BOLDO_EXT}}': img_b64.model_boldo_exterior,
+    '{{IMG_MODEL_BOLDO_INT1}}': img_b64.model_boldo_interior1,
+    '{{IMG_MODEL_BOLDO_INT2}}': img_b64.model_boldo_interior2,
+    '{{IMG_MODEL_COIHUE_EXT}}': img_b64.model_coihue_exterior,
+    '{{IMG_MODEL_COIHUE_INT1}}': img_b64.model_coihue_interior1,
+    '{{IMG_MODEL_COIHUE_INT2}}': img_b64.model_coihue_interior2,
+    '{{IMG_MODEL_HUINGAN_EXT}}': img_b64.model_huingan_exterior,
+    '{{IMG_MODEL_HUINGAN_INT1}}': img_b64.model_huingan_interior1,
+    '{{IMG_MODEL_HUINGAN_INT2}}': img_b64.model_huingan_interior2,
+    '{{IMG_MODEL_HUINGAN_FAMILIAR_EXT}}': img_b64.model_huingan_familiar_exterior,
+    '{{IMG_MODEL_HUINGAN_FAMILIAR_INT1}}': img_b64.model_huingan_familiar_interior1,
+    '{{IMG_MODEL_HUINGAN_FAMILIAR_INT2}}': img_b64.model_huingan_familiar_interior2,
+    '{{IMG_MODEL_LINGUE_EXT}}': img_b64.model_lingue_exterior,
+    '{{IMG_MODEL_LINGUE_INT1}}': img_b64.model_lingue_interior1,
+    '{{IMG_MODEL_LINGUE_INT2}}': img_b64.model_lingue_interior2,
+    '{{IMG_MODEL_MAITEN_EXT}}': img_b64.model_maiten_exterior,
+    '{{IMG_MODEL_MAITEN_INT1}}': img_b64.model_maiten_interior1,
+    '{{IMG_MODEL_MAITEN_INT2}}': img_b64.model_maiten_interior2,
+    '{{IMG_MODEL_PEUMO_EXT}}': img_b64.model_peumo_exterior,
+    '{{IMG_MODEL_PEUMO_INT1}}': img_b64.model_peumo_interior1,
+    '{{IMG_MODEL_PEUMO_INT2}}': img_b64.model_peumo_interior2,
+    '{{IMG_MODEL_ROBLE_EXT}}': img_b64.model_roble_exterior,
+    '{{IMG_MODEL_ROBLE_INT1}}': img_b64.model_roble_interior1,
+    '{{IMG_MODEL_ROBLE_INT2}}': img_b64.model_roble_interior2,
 }
 
 counts = {}

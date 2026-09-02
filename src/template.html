@@ -292,6 +292,17 @@
   @media (max-width:900px){ .kit-grid{ grid-template-columns:repeat(2,1fr); } }
   @media (max-width:520px){ .kit-grid{ grid-template-columns:1fr; } }
 
+  /* ---------- galeria real del modelo (paginas /casas/*) ---------- */
+  /* Reemplaza el kit-grid generico (mismas 8 fotos de terminaciones en las
+     8 fichas) por 3 fotos reales de esta casa en particular -- exterior +
+     2 interiores, sacadas de la Ficha tecnica oficial de cada modelo. */
+  .model-gallery{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-onnavy); border:1px solid var(--line-onnavy); border-radius:var(--radius); overflow:hidden; }
+  .model-gallery__main{ grid-column:1/-1; aspect-ratio:1.9/1; background:var(--navy-ink); overflow:hidden; }
+  .model-gallery__sub{ aspect-ratio:4/3; background:var(--navy-ink); overflow:hidden; }
+  .model-gallery__main img, .model-gallery__sub img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.96); transition:transform 0.6s ease; }
+  .model-gallery__main:hover img, .model-gallery__sub:hover img{ transform:scale(1.04); }
+  @media (max-width:520px){ .model-gallery{ grid-template-columns:1fr; } .model-gallery__sub{ aspect-ratio:16/10; } }
+
   /* ---------- personaliza ---------- */
   .custom-split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(32px,6vw,80px); align-items:center; }
   .custom-split__art{ position:relative; aspect-ratio:4/5; border-radius:var(--radius); background:var(--navy); display:flex; align-items:center; justify-content:center; overflow:hidden; }
@@ -1011,39 +1022,10 @@
         </div>
         <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
       </div>
-<div class="kit-grid">
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
-          <span class="kit-item__label">Ventanas Termopanel</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Muro Albayalde</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
-          <span class="kit-item__label">Muebles de Cocina y Closets</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
-          <span class="kit-item__label">Estufa de Combustión Lenta</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
-          <span class="kit-item__label">Shower Door</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
-          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
-          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
-        </div>
+<div class="model-gallery" data-model="lingue">
+        <div class="model-gallery__main"><img data-slot="exterior" alt="Casa Lingue, exterior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior1" alt="Casa Lingue, interior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior2" alt="Casa Lingue, interior" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1136,39 +1118,10 @@
         </div>
         <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
       </div>
-<div class="kit-grid">
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
-          <span class="kit-item__label">Ventanas Termopanel</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Muro Albayalde</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
-          <span class="kit-item__label">Muebles de Cocina y Closets</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
-          <span class="kit-item__label">Estufa de Combustión Lenta</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
-          <span class="kit-item__label">Shower Door</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
-          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
-          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
-        </div>
+<div class="model-gallery" data-model="huingan">
+        <div class="model-gallery__main"><img data-slot="exterior" alt="Casa Huingán, exterior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior1" alt="Casa Huingán, interior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior2" alt="Casa Huingán, interior" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1261,39 +1214,10 @@
         </div>
         <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
       </div>
-<div class="kit-grid">
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
-          <span class="kit-item__label">Ventanas Termopanel</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Muro Albayalde</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
-          <span class="kit-item__label">Muebles de Cocina y Closets</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
-          <span class="kit-item__label">Estufa de Combustión Lenta</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
-          <span class="kit-item__label">Shower Door</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
-          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
-          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
-        </div>
+<div class="model-gallery" data-model="peumo">
+        <div class="model-gallery__main"><img data-slot="exterior" alt="Casa Peumo, exterior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior1" alt="Casa Peumo, interior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior2" alt="Casa Peumo, interior" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1386,39 +1310,10 @@
         </div>
         <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
       </div>
-<div class="kit-grid">
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
-          <span class="kit-item__label">Ventanas Termopanel</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Muro Albayalde</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
-          <span class="kit-item__label">Muebles de Cocina y Closets</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
-          <span class="kit-item__label">Estufa de Combustión Lenta</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
-          <span class="kit-item__label">Shower Door</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
-          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
-          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
-        </div>
+<div class="model-gallery" data-model="boldo">
+        <div class="model-gallery__main"><img data-slot="exterior" alt="Casa Boldo, exterior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior1" alt="Casa Boldo, interior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior2" alt="Casa Boldo, interior" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1511,39 +1406,10 @@
         </div>
         <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
       </div>
-<div class="kit-grid">
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
-          <span class="kit-item__label">Ventanas Termopanel</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Muro Albayalde</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
-          <span class="kit-item__label">Muebles de Cocina y Closets</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
-          <span class="kit-item__label">Estufa de Combustión Lenta</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
-          <span class="kit-item__label">Shower Door</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
-          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
-          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
-        </div>
+<div class="model-gallery" data-model="huingan-familiar">
+        <div class="model-gallery__main"><img data-slot="exterior" alt="Casa Huingán Familiar, exterior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior1" alt="Casa Huingán Familiar, interior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior2" alt="Casa Huingán Familiar, interior" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1636,39 +1502,10 @@
         </div>
         <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
       </div>
-<div class="kit-grid">
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
-          <span class="kit-item__label">Ventanas Termopanel</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Muro Albayalde</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
-          <span class="kit-item__label">Muebles de Cocina y Closets</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
-          <span class="kit-item__label">Estufa de Combustión Lenta</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
-          <span class="kit-item__label">Shower Door</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
-          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
-          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
-        </div>
+<div class="model-gallery" data-model="roble">
+        <div class="model-gallery__main"><img data-slot="exterior" alt="Casa Roble, exterior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior1" alt="Casa Roble, interior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior2" alt="Casa Roble, interior" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1761,39 +1598,10 @@
         </div>
         <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
       </div>
-<div class="kit-grid">
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
-          <span class="kit-item__label">Ventanas Termopanel</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Muro Albayalde</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
-          <span class="kit-item__label">Muebles de Cocina y Closets</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
-          <span class="kit-item__label">Estufa de Combustión Lenta</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
-          <span class="kit-item__label">Shower Door</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
-          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
-          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
-        </div>
+<div class="model-gallery" data-model="maiten">
+        <div class="model-gallery__main"><img data-slot="exterior" alt="Casa Maitén, exterior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior1" alt="Casa Maitén, interior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior2" alt="Casa Maitén, interior" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -1886,39 +1694,10 @@
         </div>
         <p>El mismo estándar de entrega que el resto de los modelos Neorigen, sin excepciones.</p>
       </div>
-<div class="kit-grid">
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ventana" alt="Ventanas Termopanel" loading="lazy"></div>
-          <span class="kit-item__label">Ventanas Termopanel</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="albayalde" alt="Tabla de Muro Albayalde" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Muro Albayalde</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="cocina" alt="Muebles de Cocina y Closets" loading="lazy"></div>
-          <span class="kit-item__label">Muebles de Cocina y Closets</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="estufa" alt="Estufa de Combustión Lenta" loading="lazy"></div>
-          <span class="kit-item__label">Estufa de Combustión Lenta</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="ducha" alt="Shower Door" loading="lazy"></div>
-          <span class="kit-item__label">Shower Door</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="terraza" alt="Terraza con Tabla Canto Botado" loading="lazy"></div>
-          <span class="kit-item__label">Terraza con Tabla Canto Botado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="piso" alt="Tabla de Piso Vitrificado" loading="lazy"></div>
-          <span class="kit-item__label">Tabla de Piso Vitrificado</span>
-        </div>
-        <div class="kit-item">
-          <div class="kit-item__photo-wrap"><img class="kit-item__photo" data-kit="metal" alt="Revestimiento Plancha Metálica Negra" loading="lazy"></div>
-          <span class="kit-item__label">Revestimiento Plancha Metálica Negra</span>
-        </div>
+<div class="model-gallery" data-model="coihue">
+        <div class="model-gallery__main"><img data-slot="exterior" alt="Casa Coihue, exterior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior1" alt="Casa Coihue, interior" loading="lazy"></div>
+        <div class="model-gallery__sub"><img data-slot="interior2" alt="Casa Coihue, interior" loading="lazy"></div>
       </div>
     </div>
   </section>
@@ -2531,5 +2310,27 @@
   document.querySelectorAll('.kit-item__photo[data-kit]').forEach(function(img){
     var uri = KIT_PHOTOS[img.getAttribute('data-kit')];
     if (uri) img.src = uri;
+  });
+
+  // Fotos reales por modelo (de las Fichas tecnicas oficiales Neorigen), una
+  // sola vez cada una y aplicadas via data-model/data-slot para no duplicar
+  // base64 en las 8 paginas de modelo.
+  var MODEL_PHOTOS = {
+    boldo: { exterior: "{{IMG_MODEL_BOLDO_EXT}}", interior1: "{{IMG_MODEL_BOLDO_INT1}}", interior2: "{{IMG_MODEL_BOLDO_INT2}}" },
+    coihue: { exterior: "{{IMG_MODEL_COIHUE_EXT}}", interior1: "{{IMG_MODEL_COIHUE_INT1}}", interior2: "{{IMG_MODEL_COIHUE_INT2}}" },
+    huingan: { exterior: "{{IMG_MODEL_HUINGAN_EXT}}", interior1: "{{IMG_MODEL_HUINGAN_INT1}}", interior2: "{{IMG_MODEL_HUINGAN_INT2}}" },
+    'huingan-familiar': { exterior: "{{IMG_MODEL_HUINGAN_FAMILIAR_EXT}}", interior1: "{{IMG_MODEL_HUINGAN_FAMILIAR_INT1}}", interior2: "{{IMG_MODEL_HUINGAN_FAMILIAR_INT2}}" },
+    lingue: { exterior: "{{IMG_MODEL_LINGUE_EXT}}", interior1: "{{IMG_MODEL_LINGUE_INT1}}", interior2: "{{IMG_MODEL_LINGUE_INT2}}" },
+    maiten: { exterior: "{{IMG_MODEL_MAITEN_EXT}}", interior1: "{{IMG_MODEL_MAITEN_INT1}}", interior2: "{{IMG_MODEL_MAITEN_INT2}}" },
+    peumo: { exterior: "{{IMG_MODEL_PEUMO_EXT}}", interior1: "{{IMG_MODEL_PEUMO_INT1}}", interior2: "{{IMG_MODEL_PEUMO_INT2}}" },
+    roble: { exterior: "{{IMG_MODEL_ROBLE_EXT}}", interior1: "{{IMG_MODEL_ROBLE_INT1}}", interior2: "{{IMG_MODEL_ROBLE_INT2}}" }
+  };
+  document.querySelectorAll('.model-gallery[data-model]').forEach(function(el){
+    var photos = MODEL_PHOTOS[el.getAttribute('data-model')];
+    if (!photos) return;
+    el.querySelectorAll('img[data-slot]').forEach(function(img){
+      var uri = photos[img.getAttribute('data-slot')];
+      if (uri) img.src = uri;
+    });
   });
 </script>
