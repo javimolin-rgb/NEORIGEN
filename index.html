@@ -239,15 +239,17 @@
      crop, since cover always fills the width first). */
   .hero__grid{ display:block; padding-top:clamp(64px,9vw,116px); padding-bottom:clamp(48px,7vw,92px); position:relative; z-index:2; }
   .hero__grid > div:first-child{ max-width:680px; }
-  .hero__kicker{ margin-bottom:22px; font-size:1rem; letter-spacing:0.14em; gap:0.8em; }
-  .hero__kicker::before{ width:32px; }
+  .hero__kicker{ margin-bottom:22px; font-size:clamp(0.5rem,2.6vw,1rem); letter-spacing:0.14em; gap:0.8em; white-space:nowrap; }
+  .hero__kicker::before{ width:32px; flex:none; }
+  @media (max-width:360px){ .hero__kicker::before{ width:20px; } .hero__kicker{ gap:0.55em; } }
   .hero h1{ color:var(--white); font-size:clamp(2.4rem,5.4vw,4.5rem); line-height:1.05; letter-spacing:-0.01em; }
   .hero h1 em{ font-style:italic; color:#D9B48C; }
   .hero__lede{ margin-top:20px; font-size:1.05rem; line-height:1.5; color:var(--navy-100); max-width:46ch; }
   .hero__cta{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
-  .hero__stats{ display:flex; gap:clamp(20px,3.4vw,40px); margin-top:38px; flex-wrap:wrap; }
-  .hero__stat b{ display:block; font-family:var(--font-display); font-size:1.9rem; line-height:1.08; color:var(--white); }
-  .hero__stat span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.62); }
+  .hero__stats{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(14px,2.4vw,32px); margin-top:38px; }
+  .hero__stat b{ display:block; font-family:var(--font-display); font-size:clamp(1.3rem,2vw,1.9rem); line-height:1.08; color:var(--white); white-space:nowrap; }
+  .hero__stat span{ display:block; margin-top:4px; font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.62); }
+  @media (max-width:480px){ .hero__stats{ grid-template-columns:repeat(2,minmax(0,1fr)); row-gap:24px; } }
 
   /* Retired now that the photo fills the whole hero: the small circular
      photo cutout, its decorative rings/crosses, the blueprint-grid backdrop
@@ -281,9 +283,9 @@
 
   /* ---------- modelo destacado ---------- */
   .feature-model{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:clamp(32px,6vw,80px); align-items:center; }
-  .feature-model__art{ background:var(--mist-dim); border:1px solid var(--line); border-radius:var(--radius); display:flex; align-items:center; justify-content:center; aspect-ratio:6/5; position:relative; overflow:hidden; }
-  .feature-model__art img{ width:52%; }
-  .feature-model__tag{ position:absolute; top:18px; left:18px; background:var(--navy); color:var(--white); font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; padding:6px 10px; border-radius:2px; }
+  .feature-model__art{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; aspect-ratio:6/5; position:relative; overflow:hidden; padding:14px; }
+  .feature-model__art img{ width:100%; height:100%; object-fit:cover; border-radius:2px; display:block; }
+  .feature-model__tag{ position:absolute; top:26px; left:26px; background:var(--navy); color:var(--white); font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.1em; text-transform:uppercase; padding:6px 10px; border-radius:2px; }
   .feature-model__specs{ display:flex; gap:28px; margin:26px 0 30px; flex-wrap:wrap; }
   .spec b{ display:block; font-family:var(--font-display); font-size:1.7rem; line-height:1.1; color:var(--navy); }
   .spec span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); }
@@ -671,7 +673,7 @@
           <a class="btn btn-ghost on-dark" href="https://wa.me/56942355665" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
         </div>
         <div class="hero__stats">
-          <div class="hero__stat"><b>8</b><span>Modelos listos</span></div>
+          <div class="hero__stat"><b>8</b><span>Modelos</span></div>
           <div class="hero__stat"><b>57–167 m²</b><span>Útiles, por modelo</span></div>
           <div class="hero__stat"><b>6–8 meses</b><span>Plazos de obra</span></div>
           <div class="hero__stat"><b>Trabajando</b><span>En el área</span></div>
