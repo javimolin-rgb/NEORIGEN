@@ -221,25 +221,32 @@
      replaces the old two-column "text | floating circle" layout, which left
      roughly half the hero as solid flat navy. */
   .hero{ position:relative; color:var(--white); overflow:hidden;
+    /* Gradient pushed further right and raised off zero opacity (was fading
+       to near-clear by 76-92%, right where the stats row's later columns
+       sit) so the whole text column -- including "20+ años" at its right
+       edge -- stays readable over a photo that can be bright there
+       (window light, snow, sky), not just the first stat or two. */
     background-image:
-      linear-gradient(100deg, rgba(4,18,28,0.94) 0%, rgba(4,18,28,0.82) 30%, rgba(4,18,28,0.42) 56%, rgba(4,18,28,0.14) 76%, rgba(4,18,28,0.05) 92%),
+      linear-gradient(100deg, rgba(4,18,28,0.95) 0%, rgba(4,18,28,0.88) 25%, rgba(4,18,28,0.68) 45%, rgba(4,18,28,0.38) 60%, rgba(4,18,28,0.12) 78%, rgba(4,18,28,0.03) 94%),
       var(--hero-bg);
-    background-size: cover; background-position: center 38%;
+    background-size: cover; background-position: center 25%;
   }
-  /* Tightened vertical rhythm (padding/margins below) so the full hero --
-     kicker, headline, lede, buttons and the stats row -- fits inside one
-     laptop-height browser window on load; before this the stats row sat
-     past the fold on common 900px-tall viewports. */
-  .hero__grid{ display:block; padding-top:clamp(48px,7vw,88px); padding-bottom:clamp(32px,5vw,64px); position:relative; z-index:2; }
+  /* Vertical rhythm below balances two constraints: fit the full hero
+     (kicker through the stats row) inside one laptop-height window on
+     load, while giving the background photo enough element height that
+     "cover" doesn't have to crop so tightly into the house (a shorter box
+     forces a smaller vertical slice of the image, i.e. a tighter/zoomed-in
+     crop, since cover always fills the width first). */
+  .hero__grid{ display:block; padding-top:clamp(64px,9vw,116px); padding-bottom:clamp(48px,7vw,92px); position:relative; z-index:2; }
   .hero__grid > div:first-child{ max-width:680px; }
-  .hero__kicker{ margin-bottom:16px; }
+  .hero__kicker{ margin-bottom:18px; }
   .hero h1{ color:var(--white); font-size:clamp(2.4rem,5.4vw,4.5rem); line-height:1.05; letter-spacing:-0.01em; }
   .hero h1 em{ font-style:italic; color:#D9B48C; }
-  .hero__lede{ margin-top:18px; font-size:1.05rem; line-height:1.5; color:var(--navy-100); max-width:46ch; }
-  .hero__cta{ display:flex; gap:14px; margin-top:26px; flex-wrap:wrap; }
-  .hero__stats{ display:flex; gap:clamp(20px,3.4vw,40px); margin-top:34px; flex-wrap:wrap; }
+  .hero__lede{ margin-top:20px; font-size:1.05rem; line-height:1.5; color:var(--navy-100); max-width:46ch; }
+  .hero__cta{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
+  .hero__stats{ display:flex; gap:clamp(20px,3.4vw,40px); margin-top:38px; flex-wrap:wrap; }
   .hero__stat b{ display:block; font-family:var(--font-display); font-size:1.9rem; line-height:1.08; color:var(--white); }
-  .hero__stat span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--navy-300); }
+  .hero__stat span{ font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.62); }
 
   /* Retired now that the photo fills the whole hero: the small circular
      photo cutout, its decorative rings/crosses, the blueprint-grid backdrop
