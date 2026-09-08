@@ -2700,6 +2700,7 @@
   // kit, Galería, o galería de un modelo). ----------
   (function(){
     var GROUP_SELECTOR = '.kit-grid, .gallery-grid, .model-gallery';
+    var IMG_SELECTOR = GROUP_SELECTOR.split(',').map(function(s){ return s.trim() + ' img'; }).join(', ');
     var lightbox = document.getElementById('lightbox');
     var lbImg = document.getElementById('lightboxImg');
     var lbCaption = document.getElementById('lightboxCaption');
@@ -2737,7 +2738,7 @@
     }
 
     document.addEventListener('click', function(e){
-      var img = e.target.closest && e.target.closest(GROUP_SELECTOR + ' img');
+      var img = e.target.closest && e.target.closest(IMG_SELECTOR);
       if (!img || !img.src) return;
       var container = img.closest(GROUP_SELECTOR);
       var images = Array.prototype.slice.call(container.querySelectorAll('img')).filter(function(i){ return i.src; });
