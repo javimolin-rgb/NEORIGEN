@@ -612,6 +612,9 @@
   .faq-item summary::after{ content:"+"; font-family:var(--font-mono); font-size:1.2rem; color:var(--timber); flex:none; }
   .faq-item[open] summary::after{ content:"–"; }
   .faq-item p{ margin-top:14px; color:var(--ink-soft); max-width:64ch; }
+  .faq-item ul, .faq-item ol{ margin-top:14px; padding-left:20px; color:var(--ink-soft); max-width:64ch; }
+  .faq-item ul li, .faq-item ol li{ margin-top:6px; }
+  .faq-item p + p{ margin-top:12px; }
 
   /* ---------- Promociones ---------- */
   .promo-card{ border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--paper); }
@@ -2465,14 +2468,205 @@
           <summary>¿Qué diferencia a Neorigen de una constructora tradicional?</summary>
           <p>Partimos de modelos prediseñados, pero cada proyecto tiene una respuesta particular, de acuerdo con quien lo va a vivir y el lugar donde se construirá. Adaptamos cada modelo a las necesidades del cliente y las características del terreno, integrando diseño, construcción y sustentabilidad aplicada desde el inicio. Incorporamos criterios de eficiencia térmica, uso eficiente de los recursos e integración con el entorno.</p>
         </details>
-        <details class="faq-item" data-cat="diseno-personalizacion">
+        <details class="faq-item" data-cat="sobre-neorigen">
           <summary>¿Qué tipo de casas construyen?</summary>
           <p>Construimos casas prediseñadas y personalizadas de distintos estilos y tamaños: refugios, casas familiares, segundas viviendas, proyectos turísticos y soluciones habitacionales on y off-grid.</p>
         </details>
-        <details class="faq-item" data-cat="construccion-proceso">
+        <details class="faq-item" data-cat="sobre-neorigen">
           <summary>¿Qué medidas toman para garantizar la calidad y la durabilidad de la construcción?</summary>
           <p>Utilizamos materiales de alta calidad y trabajamos con profesionales experimentados en cada etapa del proceso de construcción. Además, realizamos inspecciones regulares para asegurarnos de que se cumplan los estándares de calidad.</p>
         </details>
+
+        <details class="faq-item" data-cat="diseno-personalizacion">
+          <summary>¿Puedo personalizar el diseño de mi casa?</summary>
+          <p>Sí, ofrecemos opciones de personalización para adaptar el diseño de tu casa a tus necesidades y preferencias específicas. Trabajaremos contigo para crear el hogar perfecto que refleje tu estilo de vida.</p>
+        </details>
+        <details class="faq-item" data-cat="diseno-personalizacion">
+          <summary>¿Las casas pueden adaptarse a accesibilidad universal?</summary>
+          <p>Sí. Contamos con modelos compatibles con accesibilidad universal y también podemos incorporar adaptaciones específicas si el cliente lo solicita.</p>
+        </details>
+        <details class="faq-item" data-cat="diseno-personalizacion">
+          <summary>¿Pueden diseñar una casa completamente desde cero?</summary>
+          <p>Sí. También desarrollamos proyectos personalizados desde cero.</p>
+        </details>
+        <details class="faq-item" data-cat="diseno-personalizacion">
+          <summary>¿Las casas son prefabricadas?</summary>
+          <p>No. Nuestras viviendas se desarrollan en el mismo terreno en un proceso de construcción tradicional de calidad y eficiencia; cada proyecto se adapta al terreno y a las necesidades del cliente.</p>
+        </details>
+
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿Cuánto cuesta una casa Neorigen?</summary>
+          <p>El valor depende de múltiples factores:</p>
+          <ul>
+            <li>Tamaño</li>
+            <li>Nivel de terminaciones</li>
+            <li>Ubicación</li>
+            <li>Accesos</li>
+            <li>Características del terreno</li>
+            <li>Personalizaciones</li>
+          </ul>
+          <p>Por eso trabajamos presupuestos personalizados.</p>
+        </details>
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿Cómo podré saber el costo final de mi proyecto?</summary>
+          <p>Todos nuestros modelos cuentan con un valor base de construcción referencial. Si deseas personalizar el diseño, adaptar espacios o incorporar requerimientos especiales, actualizamos el presupuesto según esas modificaciones.</p>
+          <p>Además, evaluamos las características del terreno y ubicación del proyecto para considerar aspectos como accesos, factibilidades y condiciones de construcción, entregando así una propuesta clara y ajustada a la realidad de cada obra. Nuestro objetivo es que tengas la mayor transparencia posible desde las primeras etapas del proyecto.</p>
+        </details>
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿Trabajan con estados de pago?</summary>
+          <p>Sí. Los proyectos se estructuran mediante estados de avance y pagos parciales asociados al progreso de obra.</p>
+        </details>
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿Cuánto tiempo tomará construir mi casa desde cero?</summary>
+          <p>El tiempo de construcción puede variar según el tamaño y la complejidad de la casa, así como factores externos como el clima y los permisos municipales. En general, la construcción de una casa puede tomar entre 5 y 8 meses.</p>
+        </details>
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿Qué pasa si surgen cambios o imprevistos durante la construcción?</summary>
+          <p>Si surgen cambios o imprevistos durante la construcción, trabajaremos contigo para encontrar soluciones y ajustar el plan según sea necesario. Nuestro objetivo es asegurarnos de que estés satisfecho con el resultado final.</p>
+        </details>
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿El precio puede cambiar después de firmar el contrato?</summary>
+          <p>No. Una vez firmado el contrato de construcción, el valor acordado queda establecido en UF, lo que entrega estabilidad y claridad durante todo el desarrollo del proyecto.</p>
+          <p>El precio solo podría modificarse en caso de que el cliente solicite cambios, ampliaciones o adicionales posteriores a la firma del contrato. En ese caso, cualquier modificación se cotiza y aprueba previamente.</p>
+        </details>
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿Qué pasa si quiero hacer cambios durante la obra?</summary>
+          <p>Siempre intentamos adaptarnos a nuevas necesidades. En caso de solicitar modificaciones posteriores al contrato, estas se evalúan técnica y económicamente, solicitando un visto bueno previo, antes de ejecutarse.</p>
+        </details>
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿La casa puede aumentar de valor con el tiempo?</summary>
+          <p>Un proyecto bien diseñado, eficiente y correctamente ejecutado no solo mejora la calidad de vida, también puede transformarse en un activo de alto valor a futuro.</p>
+        </details>
+        <details class="faq-item" data-cat="valores-presupuestos">
+          <summary>¿Puedo visitar proyectos construidos?</summary>
+          <p>Dependiendo de disponibilidad y coordinación, sí podemos mostrar proyectos ejecutados o en proceso. Nos gusta que nuestros clientes puedan conocer de cerca la calidad constructiva y detalles reales de ejecución.</p>
+        </details>
+
+        <details class="faq-item" data-cat="construccion-proceso">
+          <summary>¿Cómo puedo estar informado sobre el progreso de la construcción de mi casa?</summary>
+          <p>Mantenemos una comunicación abierta y constante contigo durante todo el proceso de construcción. Te proporcionaremos actualizaciones periódicas sobre el progreso y estaremos disponibles para responder cualquier pregunta que tengas.</p>
+        </details>
+        <details class="faq-item" data-cat="construccion-proceso">
+          <summary>¿Se incluyen permisos municipales?</summary>
+          <p>Los permisos municipales son obligatorios para el cliente, ya que toda construcción debe contar con su permiso de obra aprobado antes de empezar a construir y luego debe contar con la aprobación y recepción final de la obra. Estos permisos los gestiona Neorigen y están incluidos en el valor final del contrato (luego de estudio del terreno).</p>
+          <p>Los costos asociados a "permisos" —incluso aquellos cobrados por la Municipalidad— y costos de "certificados" de empalmes, no están incluidos y son de cargo de cada cliente. Todas las gestiones las realiza Neorigen.</p>
+        </details>
+        <details class="faq-item" data-cat="construccion-proceso">
+          <summary>¿Qué solución me pueden dar si mi terreno no tiene red de alcantarillado?</summary>
+          <p>Si tu terreno no tiene acceso a una red de alcantarillado, hay varias soluciones que puedes considerar para manejar adecuadamente el tratamiento de aguas residuales:</p>
+          <ul>
+            <li><b>Fosa séptica:</b> sistema de tratamiento que separa y descompone los sólidos y líquidos de las aguas residuales. El líquido tratado se filtra a través del suelo, mientras que los sólidos se acumulan y deben bombearse periódicamente.</li>
+            <li><b>Sistema de Tratamiento de Aguas Residuales (STAR):</b> alternativa más avanzada que usa procesos biológicos y químicos para tratar las aguas residuales y eliminar contaminantes. Más costosa de instalar y mantener, pero con un tratamiento más completo.</li>
+            <li><b>Sistema de filtro de arena:</b> utiliza capas de arena y grava para filtrar y tratar las aguas residuales antes de que se infiltren en el suelo. Eficaz en suelos permeables.</li>
+            <li><b>Sistema de lodos activados:</b> similar a las plantas de tratamiento municipales pero a menor escala; usa microorganismos para descomponer y tratar las aguas residuales.</li>
+          </ul>
+        </details>
+        <details class="faq-item" data-cat="construccion-proceso">
+          <summary>¿Qué solución me pueden dar si mi terreno no tiene acceso a la red eléctrica?</summary>
+          <p>Si tu terreno no tiene acceso a la red eléctrica, hay varias soluciones que puedes considerar:</p>
+          <ul>
+            <li><b>Energía solar:</b> los paneles solares capturan la energía del sol y la convierten en electricidad, con opción de baterías para almacenarla y usarla de noche o en días nublados.</li>
+            <li><b>Generadores diésel o de gasolina:</b> solución temporal o de respaldo, aunque más ruidosa, contaminante y con suministro constante de combustible.</li>
+            <li><b>Energía eólica:</b> viable si el terreno tiene vientos consistentes; los aerogeneradores convierten la energía del viento en electricidad.</li>
+            <li><b>Microhidroeléctrica:</b> si el terreno cuenta con un flujo de agua constante, aprovecha la energía cinética del agua en movimiento de forma sostenible.</li>
+          </ul>
+        </details>
+        <details class="faq-item" data-cat="construccion-proceso">
+          <summary>¿Cómo es el proceso desde que los contacto?</summary>
+          <ol>
+            <li>Primera conversación y evaluación inicial.</li>
+            <li>Definición de necesidades y presupuesto.</li>
+            <li>Desarrollo de propuesta y diseño.</li>
+            <li>Contrato y planificación.</li>
+            <li>Construcción y seguimiento.</li>
+            <li>Entrega del proyecto.</li>
+          </ol>
+        </details>
+
+        <details class="faq-item" data-cat="garantias-postventa">
+          <summary>¿Las casas tienen garantía?</summary>
+          <p>Sí. Todos nuestros proyectos cuentan con garantía según normativa vigente y políticas internas de Neorigen.</p>
+        </details>
+        <details class="faq-item" data-cat="garantias-postventa">
+          <summary>¿Ofrecen servicio postventa?</summary>
+          <p>Sí. Acompañamos a nuestros clientes también después de la entrega del proyecto.</p>
+        </details>
+        <details class="faq-item" data-cat="garantias-postventa">
+          <summary>¿Qué pasa si surge un problema?</summary>
+          <p>En ese caso, debes contactarte con nosotros para coordinar la solución de tu problema. Esta coordinación consta de una evaluación y luego coordinación de tiempos. Estamos preparados para actuar rápido en casos de urgencia.</p>
+        </details>
+        <details class="faq-item" data-cat="garantias-postventa">
+          <summary>¿Cómo funciona la entrega final?</summary>
+          <p>Una vez terminada la construcción, realizamos una revisión completa del proyecto junto al cliente para verificar terminaciones, funcionamiento y cumplimiento de lo acordado.</p>
+          <p>Posteriormente se coordina la entrega formal de la vivienda y la documentación correspondiente, dando inicio al período de garantía y acompañamiento postventa. Nuestro objetivo es que recibas tu casa con tranquilidad, claridad y respaldo en cada etapa del proceso.</p>
+        </details>
+
+        <details class="faq-item" data-cat="contacto-cotizacion">
+          <summary>¿Qué información necesito enviar?</summary>
+          <p>Idealmente:</p>
+          <ul>
+            <li>Ubicación del terreno</li>
+            <li>Metros aproximados que deseas construir</li>
+            <li>Cantidad de dormitorios y baños</li>
+            <li>Referencias, imágenes o modelos de interés</li>
+            <li>Si cuentas con un presupuesto estimado</li>
+            <li>Cualquier información relevante sobre el terreno</li>
+          </ul>
+        </details>
+        <details class="faq-item" data-cat="contacto-cotizacion">
+          <summary>¿Cómo puedo cotizar?</summary>
+          <p>Puedes escribirnos directamente a través del formulario de contacto, WhatsApp o redes sociales. Idealmente incluye:</p>
+          <ul>
+            <li>Ubicación del terreno</li>
+            <li>Metros aproximados</li>
+            <li>Referencias o imágenes</li>
+            <li>Presupuesto estimado</li>
+          </ul>
+        </details>
+        <details class="faq-item" data-cat="contacto-cotizacion">
+          <summary>¿Cuánto demora una propuesta?</summary>
+          <p>Depende del nivel de personalización y complejidad del proyecto, pero normalmente las propuestas iniciales se preparan dentro de pocos días hábiles.</p>
+          <p>En proyectos más personalizados o con mayores requerimientos técnicos, los tiempos pueden variar.</p>
+        </details>
+        <details class="faq-item" data-cat="contacto-cotizacion">
+          <summary>¿Puedo agendar una reunión?</summary>
+          <p>Sí. Podemos coordinar reuniones presenciales o virtuales para conversar sobre tu proyecto, resolver dudas y evaluar distintas alternativas según tus necesidades y presupuesto.</p>
+        </details>
+
+        <details class="faq-item" data-cat="sustentabilidad-eficiencia">
+          <summary>¿Cómo sé si este es un buen momento para construir?</summary>
+          <p>Cada proyecto y situación familiar es distinta. Nuestro objetivo es ayudarte a evaluar de forma realista el alcance del proyecto, sus costos y posibilidades, para que puedas tomar una decisión informada y con tranquilidad.</p>
+        </details>
+        <details class="faq-item" data-cat="sustentabilidad-eficiencia">
+          <summary>¿Pueden incorporar energía solar?</summary>
+          <p>Sí. Podemos diseñar proyectos preparados para incorporar sistemas de energía solar, ya sea como apoyo al consumo eléctrico o como parte de una solución off-grid más completa.</p>
+          <p>La implementación dependerá de factores como ubicación, consumo estimado, orientación del proyecto y nivel de autonomía que busque cada cliente.</p>
+        </details>
+        <details class="faq-item" data-cat="sustentabilidad-eficiencia">
+          <summary>¿Las casas son eficientes térmicamente?</summary>
+          <p>Sí. Diseñamos viviendas pensando en confort térmico, eficiencia energética y reducción de consumo.</p>
+        </details>
+        <details class="faq-item" data-cat="sustentabilidad-eficiencia">
+          <summary>¿Qué soluciones sustentables ofrecen?</summary>
+          <p>Dependiendo del proyecto y necesidades de cada cliente, podemos incorporar distintas soluciones orientadas a mejorar la eficiencia, reducir consumos y aprovechar mejor los recursos naturales, como por ejemplo:</p>
+          <ul>
+            <li>Energía solar</li>
+            <li>Sistemas off-grid</li>
+            <li>Separación de aguas grises</li>
+            <li>Estrategias de diseño bioclimático</li>
+            <li>Aislación térmica avanzada</li>
+            <li>Recuperadores de calor</li>
+            <li>Ventilación eficiente</li>
+            <li>Muro Trombe y soluciones pasivas de climatización</li>
+          </ul>
+          <p>Cada proyecto se evalúa de manera personalizada según ubicación, clima, orientación y objetivos del cliente.</p>
+        </details>
+        <details class="faq-item" data-cat="sustentabilidad-eficiencia">
+          <summary>¿Por qué se consideran soluciones sustentables?</summary>
+          <p>Porque buscan reducir el impacto ambiental de la vivienda y mejorar su eficiencia en el uso de recursos como energía, agua y climatización.</p>
+          <p>Además de disminuir consumos y pérdidas energéticas, muchas de estas soluciones también mejoran el confort interior, la autonomía y el rendimiento de la vivienda a largo plazo.</p>
+        </details>
+
         <p class="faq-empty" style="display:none; color:var(--ink-soft);">Todavía no tenemos preguntas publicadas en esta categoría. Si tienes una consulta puntual, <a href="#/contacto" data-route="/contacto" style="color:var(--timber); text-decoration:underline;">escríbenos</a> y te respondemos directamente.</p>
       </div>
 
