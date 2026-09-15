@@ -601,9 +601,10 @@
 
   /* ---------- Preguntas frecuentes ---------- */
   .faq-cats{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:44px; }
-  .faq-cat{ font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.03em; border:1px solid var(--line); border-radius:20px; padding:7px 14px; color:var(--ink-soft); background:none; cursor:pointer; transition:background .15s ease, color .15s ease, border-color .15s ease; }
+  .faq-cat{ -webkit-appearance:none; appearance:none; font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.03em; border:1px solid var(--line); border-radius:20px; padding:7px 14px; color:var(--ink-soft); background:none; cursor:pointer; transition:background .15s ease, color .15s ease, border-color .15s ease; }
   .faq-cat:hover{ border-color:var(--timber); color:var(--ink); }
   .faq-cat.is-active{ background:var(--navy); border-color:var(--navy); color:var(--white); }
+  .faq-cat:focus-visible{ outline:2px solid var(--timber); outline-offset:2px; }
   .faq-list{ display:flex; flex-direction:column; }
   .faq-item{ border-bottom:1px solid var(--line); padding:22px 0; }
   .faq-item summary{ cursor:pointer; font-size:1.02rem; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:baseline; gap:16px; }
@@ -2444,34 +2445,35 @@
 
   <section class="section">
     <div class="wrap">
-      <div class="faq-cats">
-        <span class="faq-cat is-active">Sobre Neorigen</span>
-        <span class="faq-cat">Diseño y Personalización</span>
-        <span class="faq-cat">Valores y Presupuestos</span>
-        <span class="faq-cat">Construcción y Proceso</span>
-        <span class="faq-cat">Garantías y Postventa</span>
-        <span class="faq-cat">Contacto y Cotización</span>
-        <span class="faq-cat">Sustentabilidad y Eficiencia</span>
+      <div class="faq-cats" role="tablist">
+        <button type="button" class="faq-cat is-active" data-cat="sobre-neorigen">Sobre Neorigen</button>
+        <button type="button" class="faq-cat" data-cat="diseno-personalizacion">Diseño y Personalización</button>
+        <button type="button" class="faq-cat" data-cat="valores-presupuestos">Valores y Presupuestos</button>
+        <button type="button" class="faq-cat" data-cat="construccion-proceso">Construcción y Proceso</button>
+        <button type="button" class="faq-cat" data-cat="garantias-postventa">Garantías y Postventa</button>
+        <button type="button" class="faq-cat" data-cat="contacto-cotizacion">Contacto y Cotización</button>
+        <button type="button" class="faq-cat" data-cat="sustentabilidad-eficiencia">Sustentabilidad y Eficiencia</button>
       </div>
 
       <div class="faq-list">
-        <details class="faq-item">
+        <details class="faq-item" data-cat="sobre-neorigen">
           <summary>¿Qué es Neorigen?</summary>
           <p>Neorigen diseña y construye casas a partir de modelos prediseñados, que adaptamos a las necesidades, forma de vida y características de cada cliente y su terreno.</p>
           <p>Combinamos diseño, construcción real y sustentabilidad aplicada para desarrollar casas eficientes, pensadas para integrarse a su entorno y responder a las necesidades de quienes las habitarán.</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item" data-cat="sobre-neorigen">
           <summary>¿Qué diferencia a Neorigen de una constructora tradicional?</summary>
           <p>Partimos de modelos prediseñados, pero cada proyecto tiene una respuesta particular, de acuerdo con quien lo va a vivir y el lugar donde se construirá. Adaptamos cada modelo a las necesidades del cliente y las características del terreno, integrando diseño, construcción y sustentabilidad aplicada desde el inicio. Incorporamos criterios de eficiencia térmica, uso eficiente de los recursos e integración con el entorno.</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item" data-cat="diseno-personalizacion">
           <summary>¿Qué tipo de casas construyen?</summary>
           <p>Construimos casas prediseñadas y personalizadas de distintos estilos y tamaños: refugios, casas familiares, segundas viviendas, proyectos turísticos y soluciones habitacionales on y off-grid.</p>
         </details>
-        <details class="faq-item">
+        <details class="faq-item" data-cat="construccion-proceso">
           <summary>¿Qué medidas toman para garantizar la calidad y la durabilidad de la construcción?</summary>
           <p>Utilizamos materiales de alta calidad y trabajamos con profesionales experimentados en cada etapa del proceso de construcción. Además, realizamos inspecciones regulares para asegurarnos de que se cumplan los estándares de calidad.</p>
         </details>
+        <p class="faq-empty" style="display:none; color:var(--ink-soft);">Todavía no tenemos preguntas publicadas en esta categoría. Si tienes una consulta puntual, <a href="#/contacto" data-route="/contacto" style="color:var(--timber); text-decoration:underline;">escríbenos</a> y te respondemos directamente.</p>
       </div>
 
       <div class="cta-final" style="margin-top:56px;">
@@ -2971,6 +2973,37 @@
     });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncCardHeight);
   });
+
+  // Preguntas frecuentes: los botones de categoría (.faq-cat) filtran la
+  // lista por data-cat. Antes eran <span> sin ningun listener -- se veian
+  // clickeables (cursor:pointer + hover) pero no hacian nada.
+  (function(){
+    var catButtons = Array.prototype.slice.call(document.querySelectorAll('.faq-cat[data-cat]'));
+    var faqList = document.querySelector('.faq-list');
+    if (!catButtons.length || !faqList) return;
+    var items = Array.prototype.slice.call(faqList.querySelectorAll('.faq-item[data-cat]'));
+    var emptyMsg = faqList.querySelector('.faq-empty');
+
+    function showCategory(cat){
+      catButtons.forEach(function(btn){
+        btn.classList.toggle('is-active', btn.getAttribute('data-cat') === cat);
+      });
+      var visibleCount = 0;
+      items.forEach(function(item){
+        var match = item.getAttribute('data-cat') === cat;
+        item.style.display = match ? '' : 'none';
+        if (match) visibleCount++;
+      });
+      if (emptyMsg) emptyMsg.style.display = visibleCount ? 'none' : '';
+    }
+
+    catButtons.forEach(function(btn){
+      btn.addEventListener('click', function(){ showCategory(btn.getAttribute('data-cat')); });
+    });
+
+    var initial = document.querySelector('.faq-cat.is-active');
+    showCategory(initial ? initial.getAttribute('data-cat') : catButtons[0].getAttribute('data-cat'));
+  })();
 </script>
 
 </body>
