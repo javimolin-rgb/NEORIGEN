@@ -479,14 +479,6 @@
   @media (max-width:820px){ .contact-layout{ grid-template-columns:1fr; } }
   @media (max-width:560px){ .qform__row{ grid-template-columns:1fr; } }
 
-  .concept-badge{
-    position:fixed; left:16px; bottom:16px; z-index:55;
-    font-family:var(--font-mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase;
-    background:rgba(1,18,28,0.88); color:var(--mist-dim); border:1px solid var(--line-onnavy);
-    padding:8px 12px; border-radius:20px; backdrop-filter:blur(6px);
-  }
-  @media (max-width:620px){ .concept-badge{ display:none; } }
-
   /* ---------- page loader ---------- */
   /* Full-screen splash shown from first paint until the page (a large
      single-file document with every photo inlined as base64) has actually
@@ -679,8 +671,6 @@
     window.setTimeout(hide, 4000);
   })();
 </script>
-
-<span class="concept-badge">Propuesta de rediseño — no es el sitio en producción</span>
 
 <!-- ============ TOPBAR ============ -->
 <div class="topbar">
@@ -2851,7 +2841,6 @@
     <hr class="hairline on-dark">
     <div class="footer__bottom" style="padding-top:24px;">
       <span>© 2026 Neorigen — Vive lo natural.</span>
-      <span>Propuesta de rediseño de neorigen.cl — no es el sitio en producción.</span>
     </div>
   </div>
 </footer>
@@ -3115,6 +3104,27 @@
       else if (e.key === 'ArrowLeft') step(-1);
       else if (e.key === 'ArrowRight') step(1);
     });
+
+    // Swipe táctil: mismo gesto que en el carrusel del home, aplicado aquí
+    // a las fotos ampliadas de cada modelo ("lo de abajo" que pidió Macarena
+    // ademas del carrusel de portada).
+    (function(){
+      var touchStartX = 0, touchStartY = 0, touching = false;
+      lightbox.addEventListener('touchstart', function(e){
+        if (e.touches.length !== 1) return;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touching = true;
+      }, {passive:true});
+      lightbox.addEventListener('touchend', function(e){
+        if (!touching) return;
+        touching = false;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+        step(dx < 0 ? 1 : -1);
+      }, {passive:true});
+    })();
   })();
 
   // Carrusel de "modelo destacado" en el home: navegación manual con
@@ -3140,6 +3150,29 @@
     dots.forEach(function(dot, i){
       dot.addEventListener('click', function(){ show(i); });
     });
+
+    // Swipe táctil (Macarena, 15-09: "sería bueno q uno pueda pasarlas con
+    // el dedo"): un gesto horizontal sobre el carrusel avanza/retrocede,
+    // igual que las flechas. Umbral de 40px y chequeo de que el gesto sea
+    // mas horizontal que vertical, para no interferir con el scroll normal
+    // de la página.
+    (function(){
+      var touchStartX = 0, touchStartY = 0, touching = false;
+      carousel.addEventListener('touchstart', function(e){
+        if (e.touches.length !== 1) return;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touching = true;
+      }, {passive:true});
+      carousel.addEventListener('touchend', function(e){
+        if (!touching) return;
+        touching = false;
+        var dx = e.changedTouches[0].clientX - touchStartX;
+        var dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+        show(current + (dx < 0 ? 1 : -1));
+      }, {passive:true});
+    })();
 
     // Todas las tarjetas del carrusel deben medir lo mismo -- el alto de la
     // que tenga más contenido (varía según el ancho de pantalla, porque el
