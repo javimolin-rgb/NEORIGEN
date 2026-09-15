@@ -349,6 +349,29 @@
      "salte" de tamaño al navegar entre modelos. */
   .model-carousel .feature-model{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(24px,4vw,48px); }
   .model-carousel .feature-model__art{ background:none; border:none; box-shadow:none; padding:0; }
+  /* En móvil la foto se veía recortada dentro del recuadro 6:5 (object-fit:
+     cover) y la etiqueta "Casa X" quedaba encima de la casa. Se cambia a
+     object-fit:contain (se ve la foto completa, sin recortar), se saca la
+     etiqueta de encima de la foto (pasa arriba, como rótulo) y se centra
+     todo en un fondo suave (a pedido de Macarena/Flavio, 16-09). */
+  @media (max-width:820px){
+    .model-carousel .feature-model__art{
+      aspect-ratio:auto;
+      flex-direction:column;
+      align-items:stretch;
+      background:var(--mist);
+      border-radius:var(--radius);
+      padding:14px;
+      gap:12px;
+    }
+    .model-carousel .feature-model__art img{
+      width:100%; height:auto; max-height:min(62vw,340px);
+      object-fit:contain; object-position:center;
+    }
+    .model-carousel .feature-model__tag{
+      position:static; align-self:flex-start;
+    }
+  }
 
   /* ---------- llave en mano ---------- */
   .kit-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
