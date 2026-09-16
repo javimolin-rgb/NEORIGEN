@@ -392,32 +392,26 @@
      "salte" de tamaño al navegar entre modelos. */
   /* Imágenes más grandes en el carrusel (Macarena, 16-09: "sería bueno
      agrandar las imágenes... pero agrandar las imágenes de todas
-     maneras"): la columna de la foto pasa a ser más ancha que la del
-     texto (antes 0.9fr/1.1fr, casi parejo). El texto largo del párrafo se
-     abrevia con un "Ver más" (ver más abajo), así el modelo se lee mejor
-     de un vistazo sin perder la info completa a un clic de distancia. */
+     maneras") y texto abreviado con "Ver más" -- pero Javi aclaró (16-09)
+     que este cambio es solo para la versión del teléfono; en escritorio
+     el carrusel mantiene su proporción de columnas original (0.9fr/1.1fr,
+     definida en .feature-model) y el párrafo siempre completo. Todo lo de
+     acá abajo va dentro de @media (max-width:820px) por eso. */
   .model-carousel .feature-model{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(24px,4vw,48px); }
-  /* La columna de la foto se agranda respecto del texto solo en anchos
-     donde el layout sigue siendo de 2 columnas -- en mobile (≤820px)
-     .feature-model ya pasa a 1 columna apilada (ver más abajo) y esta
-     regla no debe pisar esa. */
-  @media (min-width:821px){
-    .model-carousel .feature-model{ grid-template-columns:1.2fr 0.8fr; }
-  }
-  @media (min-width:821px) and (max-width:1000px){
-    .model-carousel .feature-model{ grid-template-columns:1.05fr 0.95fr; }
-  }
   /* Párrafo del modelo: la frase destacada (bold) queda siempre visible;
-     el resto se abrevia detrás de un "Ver más" para que la tarjeta se lea
-     rápido y la foto (agrandada arriba) sea lo primero que se note. */
-  .model-carousel .feature-model__more-text{ display:none; }
-  .model-carousel .feature-model__more-text.is-shown{ display:inline; }
+     el resto se abrevia detrás de un "Ver más" -- solo en móvil (ver
+     bloque @media max-width:820px más abajo). En escritorio el texto
+     completo se ve siempre y no hay botón "Ver más". */
   .model-carousel .feature-model__more-toggle{
     display:inline-block; margin-left:4px; background:none; border:none; padding:0;
     font:inherit; font-weight:600; color:var(--timber); text-decoration:underline;
     text-underline-offset:2px; cursor:pointer;
   }
   .model-carousel .feature-model__more-toggle:hover{ color:var(--navy); }
+  @media (min-width:821px){
+    .model-carousel .feature-model__more-text{ display:inline !important; }
+    .model-carousel .feature-model__more-toggle{ display:none; }
+  }
   /* La foto se veía recortada por los costados dentro del recuadro fijo
      6:5 (object-fit:cover) -- tanto en celular como en la versión web
      (a pedido de Macarena/Flavio, 16-09). Se cambia a object-fit:contain
@@ -447,6 +441,9 @@
     .model-carousel .feature-model__tag{
       position:static; align-self:flex-start;
     }
+    /* Texto abreviado con "Ver más" -- solo en móvil (Javi, 16-09). */
+    .model-carousel .feature-model__more-text{ display:none; }
+    .model-carousel .feature-model__more-text.is-shown{ display:inline; }
   }
 
   /* ---------- llave en mano ---------- */
