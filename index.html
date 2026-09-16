@@ -390,7 +390,34 @@
      no solo la foto -- y todas las tarjetas comparten el mismo alto (el de
      la diapositiva con más contenido, Casa Coihue) para que el carrusel no
      "salte" de tamaño al navegar entre modelos. */
+  /* Imágenes más grandes en el carrusel (Macarena, 16-09: "sería bueno
+     agrandar las imágenes... pero agrandar las imágenes de todas
+     maneras"): la columna de la foto pasa a ser más ancha que la del
+     texto (antes 0.9fr/1.1fr, casi parejo). El texto largo del párrafo se
+     abrevia con un "Ver más" (ver más abajo), así el modelo se lee mejor
+     de un vistazo sin perder la info completa a un clic de distancia. */
   .model-carousel .feature-model{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:clamp(24px,4vw,48px); }
+  /* La columna de la foto se agranda respecto del texto solo en anchos
+     donde el layout sigue siendo de 2 columnas -- en mobile (≤820px)
+     .feature-model ya pasa a 1 columna apilada (ver más abajo) y esta
+     regla no debe pisar esa. */
+  @media (min-width:821px){
+    .model-carousel .feature-model{ grid-template-columns:1.2fr 0.8fr; }
+  }
+  @media (min-width:821px) and (max-width:1000px){
+    .model-carousel .feature-model{ grid-template-columns:1.05fr 0.95fr; }
+  }
+  /* Párrafo del modelo: la frase destacada (bold) queda siempre visible;
+     el resto se abrevia detrás de un "Ver más" para que la tarjeta se lea
+     rápido y la foto (agrandada arriba) sea lo primero que se note. */
+  .model-carousel .feature-model__more-text{ display:none; }
+  .model-carousel .feature-model__more-text.is-shown{ display:inline; }
+  .model-carousel .feature-model__more-toggle{
+    display:inline-block; margin-left:4px; background:none; border:none; padding:0;
+    font:inherit; font-weight:600; color:var(--timber); text-decoration:underline;
+    text-underline-offset:2px; cursor:pointer;
+  }
+  .model-carousel .feature-model__more-toggle:hover{ color:var(--navy); }
   /* La foto se veía recortada por los costados dentro del recuadro fijo
      6:5 (object-fit:cover) -- tanto en celular como en la versión web
      (a pedido de Macarena/Flavio, 16-09). Se cambia a object-fit:contain
@@ -414,7 +441,8 @@
       gap:12px;
     }
     .model-carousel .feature-model__art img{
-      width:100%; height:auto; max-height:min(62vw,340px);
+      /* Fotos más grandes también en móvil (Macarena, 16-09). */
+      width:100%; height:auto; max-height:min(82vw,420px);
     }
     .model-carousel .feature-model__tag{
       position:static; align-self:flex-start;
@@ -885,7 +913,7 @@
           <div>
             <div class="eyebrow">Modelo 1 de 9</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Lingue.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">El modelo más compacto para partir simple.</strong> Un dormitorio, un baño y una terraza pensada para extender la vida. El punto de entrada a la construcción Neorigen, con el mismo estándar llave en mano que el resto de la familia de modelos.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">El modelo más compacto para partir simple.</strong> <span class="feature-model__more-text">Un dormitorio, un baño y una terraza pensada para extender la vida. El punto de entrada a la construcción Neorigen, con el mismo estándar llave en mano que el resto de la familia de modelos.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>1</b><span>Dormitorio</span></div>
               <div class="spec"><b>1</b><span>Baño</span></div>
@@ -906,7 +934,7 @@
           <div>
             <div class="eyebrow">Modelo 2 de 9</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Huingán.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Dos dormitorios en suite, en distribución tipo mariposa.</strong> Casa Huingán tiene 2 dormitorios y 2 baños, con 73 m² útiles y un plazo de obra estimado en 7 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Dos dormitorios en suite, en distribución tipo mariposa.</strong> <span class="feature-model__more-text">Casa Huingán tiene 2 dormitorios y 2 baños, con 73 m² útiles y un plazo de obra estimado en 7 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>2</b><span>Dormitorios</span></div>
               <div class="spec"><b>2</b><span>Baños</span></div>
@@ -927,7 +955,7 @@
           <div>
             <div class="eyebrow">Modelo 3 de 9</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Peumo.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Dos pisos, con doble altura en las zonas comunes.</strong> Casa Peumo tiene 2 dormitorios y 2 baños, con 87 m² útiles y un plazo de obra estimado en 7 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Dos pisos, con doble altura en las zonas comunes.</strong> <span class="feature-model__more-text">Casa Peumo tiene 2 dormitorios y 2 baños, con 87 m² útiles y un plazo de obra estimado en 7 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>2</b><span>Dormitorios</span></div>
               <div class="spec"><b>2</b><span>Baños</span></div>
@@ -948,7 +976,7 @@
           <div>
             <div class="eyebrow">Modelo 4 de 9</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Boldo.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Cuatro dormitorios en dos pisos, para familias grandes.</strong> Casa Boldo tiene 4 dormitorios y 2 baños, con 103,9 m² útiles y un plazo de obra estimado en 8 meses. Se distribuye en 2 pisos, con amplios espacios y una distribución muy práctica: 2 dormitorios y 1 baño en cada piso. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Cuatro dormitorios en dos pisos, para familias grandes.</strong> <span class="feature-model__more-text">Casa Boldo tiene 4 dormitorios y 2 baños, con 103,9 m² útiles y un plazo de obra estimado en 8 meses. Se distribuye en 2 pisos, con amplios espacios y una distribución muy práctica: 2 dormitorios y 1 baño en cada piso. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>4</b><span>Dormitorios</span></div>
               <div class="spec"><b>2</b><span>Baños</span></div>
@@ -969,7 +997,7 @@
           <div>
             <div class="eyebrow">Modelo 5 de 9</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Mañío.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Todo en un piso, con amplitud y mucha luz.</strong> Casa Mañío tiene 3 dormitorios y 2 baños, con 106 m² útiles y un plazo de obra estimado en 8 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Todo en un piso, con amplitud y mucha luz.</strong> <span class="feature-model__more-text">Casa Mañío tiene 3 dormitorios y 2 baños, con 106 m² útiles y un plazo de obra estimado en 8 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>3</b><span>Dormitorios</span></div>
               <div class="spec"><b>2</b><span>Baños</span></div>
@@ -990,7 +1018,7 @@
           <div>
             <div class="eyebrow">Modelo 6 de 9</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Roble.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Amplios espacios en dos pisos.</strong> Casa Roble tiene 4 dormitorios y 3 baños, con 142 m² útiles y un plazo de obra estimado en 9 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Amplios espacios en dos pisos.</strong> <span class="feature-model__more-text">Casa Roble tiene 4 dormitorios y 3 baños, con 142 m² útiles y un plazo de obra estimado en 9 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>4</b><span>Dormitorios</span></div>
               <div class="spec"><b>3</b><span>Baños</span></div>
@@ -1011,7 +1039,7 @@
           <div>
             <div class="eyebrow">Modelo 7 de 9</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Maitén.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Cocina integrada al comedor y las terrazas.</strong> Casa Maitén tiene 4 dormitorios y 4 baños, con 145 m² útiles y un plazo de obra estimado en 10 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">Cocina integrada al comedor y las terrazas.</strong> <span class="feature-model__more-text">Casa Maitén tiene 4 dormitorios y 4 baños, con 145 m² útiles y un plazo de obra estimado en 10 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>4</b><span>Dormitorios</span></div>
               <div class="spec"><b>4</b><span>Baños</span></div>
@@ -1032,7 +1060,7 @@
           <div>
             <div class="eyebrow">Modelo 8 de 9</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Coihue.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">El modelo con mayor superficie de la familia.</strong> Casa Coihue tiene 3 dormitorios y 3 baños, con 167 m² útiles y un plazo de obra estimado en 10 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">El modelo con mayor superficie de la familia.</strong> <span class="feature-model__more-text">Casa Coihue tiene 3 dormitorios y 3 baños, con 167 m² útiles y un plazo de obra estimado en 10 meses. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>3</b><span>Dormitorios</span></div>
               <div class="spec"><b>3</b><span>Baños</span></div>
@@ -1054,7 +1082,7 @@
           <div>
             <div class="eyebrow">Modelo 9 de 9 — Nuevo</div>
             <h2 style="margin-top:14px; font-size:clamp(1.9rem,3.2vw,2.6rem); max-width:20ch;">Casa Ciprés.</h2>
-            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">El modelo más nuevo de la familia Neorigen.</strong> Con techo a un agua. Su ficha técnica (dormitorios, baños, m² y plazo de obra) está siendo terminada y se publicará muy pronto. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</p>
+            <p style="margin-top:18px; color:var(--ink-soft); max-width:46ch;"><strong style="color:var(--ink);">El modelo más nuevo de la familia Neorigen.</strong> <span class="feature-model__more-text">Con techo a un agua. Su ficha técnica (dormitorios, baños, m² y plazo de obra) está siendo terminada y se publicará muy pronto. Se entrega llave en mano, con el mismo estándar de terminaciones que el resto de la familia de modelos Neorigen.</span><button type="button" class="feature-model__more-toggle" data-more-toggle>Ver más</button></p>
             <div class="feature-model__specs">
               <div class="spec"><b>—</b><span>Dormitorios</span></div>
               <div class="spec"><b>—</b><span>Baños</span></div>
@@ -3316,6 +3344,27 @@
       resizeTimer = setTimeout(updateHeight, 150);
     });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateHeight);
+  });
+
+  // "Ver más / Ver menos" en el párrafo de cada diapositiva del carrusel
+  // (Macarena, 16-09: agrandar las fotos y abreviar el texto, mostrándolo
+  // completo solo si se toca). La frase en negrita queda siempre visible;
+  // el resto se esconde detrás de este botón.
+  document.querySelectorAll('.model-carousel [data-more-toggle]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var p = btn.closest('p');
+      var moreText = p && p.querySelector('.feature-model__more-text');
+      if (!moreText) return;
+      var shown = moreText.classList.toggle('is-shown');
+      btn.textContent = shown ? 'Ver menos' : 'Ver más';
+      // La diapositiva activa puede cambiar de alto al mostrar/ocultar el
+      // texto -- se reajusta .model-carousel__track para que no quede
+      // contenido cortado ni un espacio vacío de más.
+      var carousel = btn.closest('[data-carousel]');
+      var track = carousel && carousel.querySelector('.model-carousel__track');
+      var activeSlide = carousel && carousel.querySelector('.model-carousel__slide.is-active');
+      if (track && activeSlide) track.style.height = activeSlide.getBoundingClientRect().height + 'px';
+    });
   });
 
   // Preguntas frecuentes: los botones de categoría (.faq-cat) filtran la
